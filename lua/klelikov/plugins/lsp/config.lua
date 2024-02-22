@@ -4,6 +4,7 @@ local mason_lspconfig = require('mason-lspconfig')
 local conform = require('conform')
 local cmp = require('cmp')
 local cmp_format = require('lsp-zero').cmp_format()
+local cmp_action = require('lsp-zero').cmp_action()
 local ufo = require('ufo')
 
 conform.setup({
@@ -75,6 +76,8 @@ cmp.setup({
 			behavior = cmp.ConfirmBehavior.Replace,
 			select = false,
 		}),
+		['<Tab>'] = cmp_action.luasnip_supertab(),
+		['<S-Tab>'] = cmp_action.luasnip_shift_supertab(),
 	}),
 	formatting = cmp_format,
 })
