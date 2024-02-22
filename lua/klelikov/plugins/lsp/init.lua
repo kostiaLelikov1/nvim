@@ -7,4 +7,5 @@ return {
 	{ 'hrsh7th/nvim-cmp' },
 	{ 'L3MON4D3/LuaSnip' },
 	{ 'stevearc/conform.nvim' },
+	{ 'kevinhwang91/nvim-ufo', dependencies = 'kevinhwang91/promise-async' },
 }

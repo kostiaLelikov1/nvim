@@ -2,6 +2,9 @@ local lsp_zero = require('lsp-zero')
 local mason = require('mason')
 local mason_lspconfig = require('mason-lspconfig')
 local conform = require('conform')
+local cmp = require('cmp')
+local cmp_format = require('lsp-zero').cmp_format()
+local ufo = require('ufo')
 
 conform.setup({
 	formatters_by_ft = {
@@ -54,6 +57,45 @@ mason_lspconfig.setup({
 	},
 	handlers = {
 		lsp_zero.default_setup,
+		lua_ls = function()
+			local lua_opts = lsp_zero.nvim_lua_ls()
+			require('lspconfig').lua_ls.setup(lua_opts)
+		end,
 	},
 	automatic_installation = true,
+})
+
+cmp.setup({
+	sources = {
+		{ name = 'copilot', group_index = 2 },
+		{ name = 'nvim_lsp', group_index = 2 },
+	},
+	mapping = cmp.mapping.preset.insert({
+		['<CR>'] = cmp.mapping.confirm({
+			behavior = cmp.ConfirmBehavior.Replace,
+			select = false,
+		}),
+	}),
+	formatting = cmp_format,
+})
+
+vim.o.foldcolumn = '1'
+vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+vim.o.foldlevelstart = 99
+vim.o.foldenable = true
+
+ufo.setup()
+
+vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
+vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
+
+lsp_zero.set_server_config({
+	capabilities = {
+		textDocument = {
+			foldingRange = {
+				dynamicRegistration = false,
+				lineFoldingOnly = true,
+			},
+		},
+	},
 })
