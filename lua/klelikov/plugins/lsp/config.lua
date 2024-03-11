@@ -55,6 +55,7 @@ mason_lspconfig.setup({
 		'tsserver',
 		'lua_ls',
 		'eslint',
+    'prismals',
 	},
 	handlers = {
 		lsp_zero.default_setup,
