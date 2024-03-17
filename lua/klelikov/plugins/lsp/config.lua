@@ -6,6 +6,7 @@ local cmp = require('cmp')
 local cmp_format = require('lsp-zero').cmp_format()
 local cmp_action = require('lsp-zero').cmp_action()
 local ufo = require('ufo')
+local navic = require('nvim-navic')
 
 conform.setup({
 	formatters_by_ft = {
@@ -47,6 +48,10 @@ lsp_zero.on_attach(function(client, bufnr)
 	vim.keymap.set('n', 'gd', '<cmd>Telescope lsp_definitions<cr>', opts)
 	vim.keymap.set('n', 'gi', '<cmd>Telescope lsp_implementations<cr>', opts)
 	vim.keymap.set('n', 'gr', '<cmd>Telescope lsp_references<cr>', opts)
+
+	if client.server_capabilities.documentSymbolProvider then
+		navic.attach(client, bufnr)
+	end
 end)
 
 mason.setup({})
@@ -55,7 +60,7 @@ mason_lspconfig.setup({
 		'tsserver',
 		'lua_ls',
 		'eslint',
-    'prismals',
+		'prismals',
 	},
 	handlers = {
 		lsp_zero.default_setup,
