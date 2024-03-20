@@ -2,7 +2,6 @@ return {
 	'nvim-lualine/lualine.nvim',
 	dependencies = { 'nvim-tree/nvim-web-devicons' },
 	config = function()
-		local navic = require('nvim-navic')
 		local colors = {
 			blue = '#80a0ff',
 			cyan = '#79dac8',
@@ -37,16 +36,17 @@ return {
 				component_separators = '',
 				section_separators = { left = '', right = '' },
 			},
-			winbar = {
-				lualine_c = {
-					{ navic.get_location, cond = navic.is_available },
-				},
-			},
 			sections = {
 				lualine_a = { 'mode' },
 				lualine_b = { 'branch' },
-				lualine_c = { 'filename' },
-				lualine_x = { 'encoding', 'filetype' },
+				lualine_c = {
+					{
+						'navic',
+						color_correction = nil,
+						navic_opts = nil,
+					},
+				},
+				lualine_x = { 'encoding', 'filename' },
 				lualine_y = { 'progress' },
 				lualine_z = { 'location' },
 			},
