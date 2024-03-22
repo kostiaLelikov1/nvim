@@ -11,6 +11,7 @@ return {
 		treesitter.setup({
 			highlight = {
 				enable = true,
+				disable = { 'vimdoc' },
 			},
 			intent = { enable = true },
 			autotag = { enable = true },

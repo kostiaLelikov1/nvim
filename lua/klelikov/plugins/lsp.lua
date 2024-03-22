@@ -23,12 +23,13 @@ return {
 		local cmp_action = require('lsp-zero').cmp_action()
 		local ufo = require('ufo')
 		local navic = require('nvim-navic')
+		local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 
-    navic.setup({
-      lsp = {
-        auto_attach = true,
-      }
-    })
+		navic.setup({
+			lsp = {
+				auto_attach = true,
+			},
+		})
 
 		conform.setup({
 			formatters_by_ft = {
@@ -83,6 +84,7 @@ return {
 				'lua_ls',
 				'eslint',
 				'prismals',
+				'ember',
 			},
 			handlers = {
 				lsp_zero.default_setup,
@@ -109,6 +111,8 @@ return {
 			}),
 			formatting = cmp_format,
 		})
+
+		cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
 
 		vim.o.foldcolumn = '1'
 		vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
