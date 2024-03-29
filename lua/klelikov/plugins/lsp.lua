@@ -71,6 +71,7 @@ return {
 			vim.keymap.set('n', 'gd', '<cmd>Telescope lsp_definitions<cr>', opts)
 			vim.keymap.set('n', 'gi', '<cmd>Telescope lsp_implementations<cr>', opts)
 			vim.keymap.set('n', 'gr', '<cmd>Telescope lsp_references<cr>', opts)
+      vim.keymap.set('n', '<leader>rr', vim.lsp.buf.rename, opts)
 
 			if client.server_capabilities.documentSymbolProvider then
 				navic.attach(client, bufnr)
@@ -84,7 +85,6 @@ return {
 				'lua_ls',
 				'eslint',
 				'prismals',
-				'ember',
 			},
 			handlers = {
 				lsp_zero.default_setup,

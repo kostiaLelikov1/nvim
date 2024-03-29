@@ -12,3 +12,6 @@ keymap.set('n', '<c-h>', ':wincmd h<CR>')
 keymap.set('n', '<c-l>', ':wincmd l<CR>')
 
 keymap.set('n', '<leader>qq', ':bd<CR>', { desc = 'Close buffer' })
+
+keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'Scroll down half a page' })
+keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Scroll up half a page' })
