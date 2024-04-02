@@ -55,7 +55,7 @@ return {
 
 		vim.keymap.set('', '<leader>fp', function()
 			require('conform').format({ async = true, lsp_fallback = true })
-		end)
+		end, { desc = '[F]ormat [P]roject' })
 
 		lsp_zero.omnifunc.setup({
 			tabcomplete = true,
@@ -71,7 +71,7 @@ return {
 			vim.keymap.set('n', 'gd', '<cmd>Telescope lsp_definitions<cr>', opts)
 			vim.keymap.set('n', 'gi', '<cmd>Telescope lsp_implementations<cr>', opts)
 			vim.keymap.set('n', 'gr', '<cmd>Telescope lsp_references<cr>', opts)
-      vim.keymap.set('n', '<leader>rr', vim.lsp.buf.rename, opts)
+			vim.keymap.set('n', '<leader>rr', vim.lsp.buf.rename, opts)
 
 			if client.server_capabilities.documentSymbolProvider then
 				navic.attach(client, bufnr)
