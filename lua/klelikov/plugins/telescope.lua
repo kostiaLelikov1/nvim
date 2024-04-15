@@ -1,7 +1,11 @@
 return {
 	'nvim-telescope/telescope.nvim',
 	tag = '0.1.5',
-	dependencies = { 'nvim-lua/plenary.nvim', 'nvim-telescope/telescope-fzf-native.nvim' },
+	dependencies = {
+		'nvim-lua/plenary.nvim',
+		'nvim-telescope/telescope-fzf-native.nvim',
+		'nvim-telescope/telescope-frecency.nvim',
+	},
 	config = function()
 		local builtin = require('telescope.builtin')
 		local telescope = require('telescope')
@@ -12,8 +16,9 @@ return {
 		keymap.set('n', '<leader>fg', builtin.live_grep, { desc = '[F]ind [G]rep' })
 		keymap.set('n', '<leader>fb', builtin.buffers, { desc = '[F]ind [B]uffers' })
 		keymap.set('n', '<leader>fh', builtin.help_tags, { desc = '[F]ind [H]elp tags' })
-    keymap.set('n', '<leader>fr', builtin.registers, { desc = '[F]ind [R]egisters' })
-
+		keymap.set('n', '<leader>fr', builtin.registers, { desc = '[F]ind [R]egisters' })
+		keymap.set('n', '<leader>fc', builtin.command_history, { desc = '[F]ind [C]ommand history' })
+		keymap.set('n', '<leader>fo', '<Cmd>Telescope frecency<CR>', { desc = '[F]ind [O]ld files' })
 
 		telescope.setup({
 			extensions = {
@@ -36,5 +41,6 @@ return {
 			},
 		})
 		telescope.load_extension('fzf')
+		telescope.load_extension('frecency')
 	end,
 }
