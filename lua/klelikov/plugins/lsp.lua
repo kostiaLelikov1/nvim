@@ -16,8 +16,8 @@ return {
 	config = function()
 		local lsp_zero = require('lsp-zero')
 		local mason = require('mason')
-		local mason_lspconfig = require('mason-lspconfig')
-		local conform = require('conform')
+    local mason_lspconfig = require('mason-lspconfig')
+    local conform = require('conform')
 		local cmp = require('cmp')
 		local cmp_format = require('lsp-zero').cmp_format()
 		local cmp_action = require('lsp-zero').cmp_action()
@@ -85,6 +85,8 @@ return {
 				'lua_ls',
 				'eslint',
 				'prismals',
+				'cssls',
+				'cssmodules_ls',
 			},
 			handlers = {
 				lsp_zero.default_setup,

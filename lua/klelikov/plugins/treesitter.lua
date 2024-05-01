@@ -4,6 +4,7 @@ return {
 	build = ':TSUpdate',
 	dependencies = {
 		'windwp/nvim-ts-autotag',
+    'nvim-treesitter/nvim-treesitter-textobjects',
 	},
 	config = function()
 		local treesitter = require('nvim-treesitter.configs')
@@ -36,6 +37,15 @@ return {
 				'solidity',
 				'sql',
 				'yaml',
+			},
+			incremental_selection = {
+				enable = true,
+				keymaps = {
+					init_selection = '<leader>vi',
+					node_incremental = '<leader>vi',
+					scope_incremental = false,
+					node_decremental = '<leader>vd',
+				},
 			},
 		})
 	end,

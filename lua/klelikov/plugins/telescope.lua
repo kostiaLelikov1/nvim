@@ -19,6 +19,7 @@ return {
 		keymap.set('n', '<leader>fr', builtin.registers, { desc = '[F]ind [R]egisters' })
 		keymap.set('n', '<leader>fc', builtin.command_history, { desc = '[F]ind [C]ommand history' })
 		keymap.set('n', '<leader>fo', '<Cmd>Telescope frecency<CR>', { desc = '[F]ind [O]ld files' })
+    keymap.set('n', '<leader>fm', '<Cmd>Telescope marks<CR>', { desc = '[F]ind [M]arks' })
 
 		telescope.setup({
 			extensions = {
