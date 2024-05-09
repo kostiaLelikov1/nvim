@@ -16,11 +16,10 @@ return {
 	config = function()
 		local lsp_zero = require('lsp-zero')
 		local mason = require('mason')
-    local mason_lspconfig = require('mason-lspconfig')
-    local conform = require('conform')
+		local mason_lspconfig = require('mason-lspconfig')
+		local conform = require('conform')
 		local cmp = require('cmp')
 		local cmp_format = require('lsp-zero').cmp_format()
-		local cmp_action = require('lsp-zero').cmp_action()
 		local ufo = require('ufo')
 		local navic = require('nvim-navic')
 		local cmp_autopairs = require('nvim-autopairs.completion.cmp')
@@ -64,14 +63,20 @@ return {
 		})
 
 		lsp_zero.on_attach(function(client, bufnr)
-			lsp_zero.default_keymaps({ buffer = bufnr })
-
 			local opts = { buffer = bufnr }
 
+			vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
 			vim.keymap.set('n', 'gd', '<cmd>Telescope lsp_definitions<cr>', opts)
+			vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
 			vim.keymap.set('n', 'gi', '<cmd>Telescope lsp_implementations<cr>', opts)
+			vim.keymap.set('n', 'go', vim.lsp.buf.type_definition, opts)
 			vim.keymap.set('n', 'gr', '<cmd>Telescope lsp_references<cr>', opts)
+			vim.keymap.set('n', 'gs', vim.lsp.buf.signature_help, opts)
 			vim.keymap.set('n', '<leader>rr', vim.lsp.buf.rename, opts)
+			vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
+			vim.keymap.set('n', 'gl', vim.diagnostic.open_float, opts)
+			vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+			vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
 
 			if client.server_capabilities.documentSymbolProvider then
 				navic.attach(client, bufnr)
@@ -94,6 +99,14 @@ return {
 					local lua_opts = lsp_zero.nvim_lua_ls()
 					require('lspconfig').lua_ls.setup(lua_opts)
 				end,
+				cssmodules_ls = function()
+					require('lspconfig').cssmodules_ls.setup({
+						on_attach = function(client, bufnr)
+							client.server_capabilities.definitionProvider = false
+							lsp_zero.default_setup(client, bufnr)
+						end,
+					})
+				end,
 			},
 			automatic_installation = true,
 		})
@@ -108,13 +121,20 @@ return {
 					behavior = cmp.ConfirmBehavior.Replace,
 					select = false,
 				}),
-				['<Tab>'] = cmp_action.luasnip_supertab(),
-				['<S-Tab>'] = cmp_action.luasnip_shift_supertab(),
 			}),
 			formatting = cmp_format,
 		})
 
 		cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
+
+		local autocomplete_group = vim.api.nvim_create_augroup('vimrc_autocompletion', { clear = true })
+		vim.api.nvim_create_autocmd('FileType', {
+			pattern = { 'sql', 'mysql', 'plsql' },
+			callback = function()
+				cmp.setup.buffer({ sources = { { name = 'vim-dadbod-completion' } } })
+			end,
+			group = autocomplete_group,
+		})
 
 		vim.o.foldcolumn = '1'
 		vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value

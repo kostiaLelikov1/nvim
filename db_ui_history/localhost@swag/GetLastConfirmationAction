@@ -1,0 +1,1 @@
+db.getCollection('confirmation-actions').find({}, {token: 1}, {}).sort({createdAt: -1}).limit(1)

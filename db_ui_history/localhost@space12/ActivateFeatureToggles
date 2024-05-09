@@ -1,0 +1,1 @@
+UPDATE "FeatureToggle" SET active = TRUE

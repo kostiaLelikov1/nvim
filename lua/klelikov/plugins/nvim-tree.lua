@@ -20,7 +20,7 @@ return {
 				},
 			},
 			filters = {
-				custom = { '.DS_Store', '.idea', '.vscode', '.git' },
+				custom = { '.DS_Store', '.idea', '.vscode', '.git', 'node_modules' }
 			},
 			git = {
 				ignore = false,

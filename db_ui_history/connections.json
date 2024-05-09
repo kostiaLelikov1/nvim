@@ -1,0 +1,1 @@
+[{"url": "postgresql://postgres:postgres@localhost:5432/space12", "name": "localhost@space12"}, {"url": "mongodb://localhost:27017/swag", "name": "localhost@swag"}]
