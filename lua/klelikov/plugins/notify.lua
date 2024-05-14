@@ -4,6 +4,7 @@ return {
     vim.notify = require('notify')
     vim.notify.setup({
       render = 'compact',
+      fps = 60,
       stages = 'slide',
       timeout = 3000,
       background_colour = '#1e222a',

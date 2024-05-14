@@ -8,6 +8,7 @@ opt.shiftwidth = 2
 opt.expandtab = true
 opt.autoindent = true
 opt.wrap = false
+opt.showtabline = 2
 
 opt.ignorecase = true
 opt.smartcase = true
