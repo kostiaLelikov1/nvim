@@ -38,3 +38,18 @@ vim.keymap.set('n', '<leader>cab!', function()
 	delete_hidden_buffers({ force = true })
 end)
 keymap.set('n', '<leader>qq', ':bd<CR>', { desc = 'Close buffer' })
+
+keymap.set('n', '<leader>tq', ':tabclose<CR>', { desc = 'Close tab' })
+keymap.set('n', '<leader>tn', ':$tabnew<CR>', { desc = 'New tab' })
+keymap.set('n', '<leader>tqa', ':tabonly<CR>', { desc = 'Close all tabs except current' })
+
+local function set_tab_keymaps()
+	for i = 1, 9 do
+		local key = '<A-' .. i .. '>'
+		local command = i .. 'gt'
+		keymap.set('n', key, command, { desc = 'Go to tab ' .. i })
+	end
+	keymap.set('n', '<A-0>', ':tablast<CR>', { desc = 'Go to tab last tab' })
+end
+
+set_tab_keymaps()

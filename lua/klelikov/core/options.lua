@@ -19,6 +19,7 @@ opt.termguicolors = true
 opt.background = 'dark'
 opt.signcolumn = 'yes'
 opt.backspace = 'indent,eol,start'
+opt.scrolloff = 10
 
 opt.clipboard:append('unnamedplus')
 
