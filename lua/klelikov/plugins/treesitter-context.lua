@@ -1,7 +1,7 @@
 return {
 	'nvim-treesitter/nvim-treesitter-context',
 	config = function()
-    local context = require('treesitter-context')
+		local context = require('treesitter-context')
 		context.setup({
 			enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
 			max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.

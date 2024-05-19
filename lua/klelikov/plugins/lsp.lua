@@ -92,6 +92,7 @@ return {
 				'prismals',
 				'cssls',
 				'cssmodules_ls',
+				'pyright',
 			},
 			handlers = {
 				lsp_zero.default_setup,

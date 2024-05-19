@@ -28,8 +28,7 @@ opt.splitbelow = true
 
 opt.swapfile = false
 
-vim.o.statuscolumn = "%s %-3l %-3r  "
+vim.o.statuscolumn = '%s %-3l %-3r  '
 
 vim.opt.spelllang = 'en_us'
 vim.opt.spell = true
-

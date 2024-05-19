@@ -37,16 +37,16 @@ return {
 
 				while true do
 					local is_unique = true
-          if #path_parts < suffix_length then
-            break
-          end
+					if #path_parts < suffix_length then
+						break
+					end
 					unique_suffix = table.concat(path_parts, '/', #path_parts - suffix_length + 1)
 					for _, other_bufname in ipairs(other_bufnames) do
 						if other_bufname ~= bufname then
 							local other_path_parts = vim.split(other_bufname, '/', { plain = true })
-              if #other_path_parts < suffix_length then
-                break
-              end
+							if #other_path_parts < suffix_length then
+								break
+							end
 							local other_suffix = table.concat(other_path_parts, '/', #other_path_parts - suffix_length + 1)
 							if unique_suffix == other_suffix then
 								is_unique = false
