@@ -116,12 +116,17 @@ return {
 			sources = {
 				{ name = 'copilot', group_index = 2 },
 				{ name = 'nvim_lsp', group_index = 2 },
+				{ name = 'luasnip' },
 			},
 			mapping = cmp.mapping.preset.insert({
 				['<CR>'] = cmp.mapping.confirm({
 					behavior = cmp.ConfirmBehavior.Replace,
 					select = false,
 				}),
+				['<C-b>'] = cmp.mapping.scroll_docs(-4),
+				['<C-f>'] = cmp.mapping.scroll_docs(4),
+				['<C-Space>'] = cmp.mapping.complete(),
+				['<C-e>'] = cmp.mapping.abort(),
 			}),
 			formatting = cmp_format,
 		})
