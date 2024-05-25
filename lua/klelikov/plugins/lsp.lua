@@ -5,9 +5,12 @@ return {
 		'neovim/nvim-lspconfig',
 		'williamboman/mason.nvim',
 		'williamboman/mason-lspconfig.nvim',
-		'hrsh7th/cmp-nvim-lsp',
-		'hrsh7th/nvim-cmp',
 		'L3MON4D3/LuaSnip',
+		'hrsh7th/nvim-cmp',
+		'hrsh7th/cmp-nvim-lsp',
+		'hrsh7th/cmp-buffer',
+		'hrsh7th/cmp-path',
+		'saadparwaiz1/cmp_luasnip',
 		'stevearc/conform.nvim',
 		'kevinhwang91/nvim-ufo',
 		'kevinhwang91/promise-async',
@@ -23,6 +26,7 @@ return {
 		local ufo = require('ufo')
 		local navic = require('nvim-navic')
 		local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+		local luasnip = require('luasnip')
 
 		navic.setup({
 			lsp = {
@@ -55,6 +59,13 @@ return {
 		vim.keymap.set('', '<leader>fp', function()
 			require('conform').format({ async = true, lsp_fallback = true })
 		end, { desc = '[F]ormat [P]roject' })
+
+		lsp_zero.set_sign_icons({
+			error = '✘',
+			warn = '▲',
+			hint = '⚑',
+			info = '»',
+		})
 
 		lsp_zero.omnifunc.setup({
 			tabcomplete = true,
@@ -115,16 +126,27 @@ return {
 		cmp.setup({
 			sources = {
 				{ name = 'copilot', group_index = 2 },
-				{ name = 'nvim_lsp', group_index = 2 },
-				{ name = 'luasnip' },
+				{ name = 'path' },
+				{ name = 'nvim_lsp' },
+				{ name = 'luasnip', keyword_length = 2 },
+				{ name = 'buffer', keyword_length = 3 },
+			},
+			window = {
+				completion = cmp.config.window.bordered(),
+				documentation = cmp.config.window.bordered(),
+			},
+			snippet = {
+				expand = function(args)
+					require('luasnip').lsp_expand(args.body)
+				end,
 			},
 			mapping = cmp.mapping.preset.insert({
 				['<CR>'] = cmp.mapping.confirm({
 					behavior = cmp.ConfirmBehavior.Replace,
 					select = false,
 				}),
-				['<C-b>'] = cmp.mapping.scroll_docs(-4),
-				['<C-f>'] = cmp.mapping.scroll_docs(4),
+				['<C-d>'] = cmp.mapping.scroll_docs(-4),
+				['<C-u>'] = cmp.mapping.scroll_docs(4),
 				['<C-Space>'] = cmp.mapping.complete(),
 				['<C-e>'] = cmp.mapping.abort(),
 			}),
@@ -143,7 +165,7 @@ return {
 		})
 
 		vim.o.foldcolumn = '1'
-		vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+		vim.o.foldlevel = 99
 		vim.o.foldlevelstart = 99
 		vim.o.foldenable = true
 
@@ -161,6 +183,15 @@ return {
 					},
 				},
 			},
+		})
+
+		vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+			underline = true,
+			virtual_text = {
+				spacing = 5,
+				min = 'severity',
+			},
+			update_in_insert = true,
 		})
 	end,
 }

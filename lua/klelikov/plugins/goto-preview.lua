@@ -8,6 +8,7 @@ return {
 			default_mappings = false,
 			border = 'single',
 		})
+
 		local keymap = vim.keymap
 
 		keymap.set('n', 'gpd', goto_preview.goto_preview_definition, { desc = 'Goto Preview Definition' })

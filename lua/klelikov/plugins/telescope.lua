@@ -9,17 +9,27 @@ return {
 	config = function()
 		local builtin = require('telescope.builtin')
 		local telescope = require('telescope')
-		local trouble = require('trouble.providers.telescope')
-		local keymap = vim.keymap
+		local wk = require('which-key')
 
-		keymap.set('n', '<leader>ff', builtin.find_files, { desc = '[F]ind [F]iles' })
-		keymap.set('n', '<leader>fg', builtin.live_grep, { desc = '[F]ind [G]rep' })
-		keymap.set('n', '<leader>fb', builtin.buffers, { desc = '[F]ind [B]uffers' })
-		keymap.set('n', '<leader>fh', builtin.help_tags, { desc = '[F]ind [H]elp tags' })
-		keymap.set('n', '<leader>fr', builtin.registers, { desc = '[F]ind [R]egisters' })
-		keymap.set('n', '<leader>fc', builtin.command_history, { desc = '[F]ind [C]ommand history' })
-		keymap.set('n', '<leader>fo', '<Cmd>Telescope frecency<CR>', { desc = '[F]ind [O]ld files' })
-		keymap.set('n', '<leader>fm', '<Cmd>Telescope marks<CR>', { desc = '[F]ind [M]arks' })
+		wk.register({
+			f = {
+				name = 'Find',
+				f = { builtin.find_files, '[F]ind [F]iles' },
+				g = { builtin.live_grep, '[F]ind [G]rep' },
+				b = { builtin.buffers, '[F]ind [B]uffers' },
+				h = { builtin.help_tags, '[F]ind [H]elp tags' },
+				r = { builtin.registers, '[F]ind [R]egisters' },
+				c = { builtin.command_history, '[F]ind [C]ommand history' },
+				o = {
+					'<Cmd>Telescope frecency<CR>',
+					'[F]ind [O]ld files',
+				},
+				m = {
+					'<Cmd>Telescope marks<CR>',
+					'[F]ind [M]arks',
+				},
+			},
+		}, { prefix = '<leader>' })
 
 		telescope.setup({
 			extensions = {
@@ -28,16 +38,6 @@ return {
 					override_generic_sorter = true,
 					override_file_sorter = true,
 					case_mode = 'smart_case',
-				},
-			},
-			defaults = {
-				mappings = {
-					i = {
-						['<C-t>'] = trouble.open_with_trouble,
-					},
-					n = {
-						['<C-t>'] = trouble.open_with_trouble,
-					},
 				},
 			},
 		})

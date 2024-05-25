@@ -15,7 +15,6 @@ return {
 				disable = { 'vimdoc' },
 			},
 			intent = { enable = true },
-			autotag = { enable = true },
 			ensure_installed = {
 				'json',
 				'javascript',
