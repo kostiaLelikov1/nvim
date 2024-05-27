@@ -137,7 +137,7 @@ return {
 			},
 			snippet = {
 				expand = function(args)
-					require('luasnip').lsp_expand(args.body)
+					luasnip.lsp_expand(args.body)
 				end,
 			},
 			mapping = cmp.mapping.preset.insert({
@@ -156,6 +156,7 @@ return {
 		cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
 
 		local autocomplete_group = vim.api.nvim_create_augroup('vimrc_autocompletion', { clear = true })
+
 		vim.api.nvim_create_autocmd('FileType', {
 			pattern = { 'sql', 'mysql', 'plsql' },
 			callback = function()
