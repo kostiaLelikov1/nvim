@@ -19,6 +19,11 @@ keymap.set('n', '<leader>wq', '<C-w>q', { desc = 'Close window' })
 keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'Scroll down half a page' })
 keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Scroll up half a page' })
 
+keymap.set('i', '<c-h>', '<C-o>h', { desc = 'Move cursor left' })
+keymap.set('i', '<c-j>', '<C-o>j', { desc = 'Move cursor down' })
+keymap.set('i', '<c-k>', '<C-o>k', { desc = 'Move cursor up' })
+keymap.set('i', '<c-l>', '<C-o>l', { desc = 'Move cursor right' })
+
 local function delete_hidden_buffers(options)
 	local force = options and options.force or false
 	local buffers = vim.api.nvim_list_bufs()
