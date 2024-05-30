@@ -34,7 +34,13 @@ return {
 			vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
 			vim.keymap.set('n', 'gi', '<cmd>Telescope lsp_implementations<cr>', opts)
 			vim.keymap.set('n', 'go', vim.lsp.buf.type_definition, opts)
-			vim.keymap.set('n', 'gr', '<cmd>Telescope lsp_references<cr>', opts) vim.keymap.set('n', 'gs', vim.lsp.buf.signature_help, opts) vim.keymap.set('n', '<leader>rr', vim.lsp.buf.rename, opts) vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts) vim.keymap.set('n', 'gl', vim.diagnostic.open_float, opts) vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts) vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
+			vim.keymap.set('n', 'gr', '<cmd>Telescope lsp_references<cr>', opts)
+			vim.keymap.set('n', 'gs', vim.lsp.buf.signature_help, opts)
+			vim.keymap.set('n', 'grr', vim.lsp.buf.rename, opts)
+			vim.keymap.set('n', 'gca', vim.lsp.buf.code_action, opts)
+			vim.keymap.set('n', 'gl', vim.diagnostic.open_float, opts)
+			vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+			vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
 			if client.server_capabilities.documentSymbolProvider then
 				navic.attach(client, bufnr)
 			end
