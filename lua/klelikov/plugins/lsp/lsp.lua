@@ -59,6 +59,7 @@ return {
 				'cssls',
 				'cssmodules_ls',
 				'pyright',
+        'astro',
 			},
 			handlers = {
 				lsp_zero.default_setup,
