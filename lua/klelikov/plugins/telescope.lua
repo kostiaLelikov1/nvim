@@ -12,7 +12,7 @@ return {
 
 		wk.register({
 			f = {
-				name = 'Find',
+				name = '+find',
 				f = { builtin.find_files, '[F]ind [F]iles' },
 				g = { builtin.live_grep, '[F]ind [G]rep' },
 				b = { builtin.buffers, '[F]ind [B]uffers' },

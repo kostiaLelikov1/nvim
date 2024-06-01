@@ -31,18 +31,18 @@ return {
 			local opts = { buffer = bufnr }
 
 			wk.register({
-				K = { '<cmd>lua vim.lsp.buf.hover()<cr>', 'Show hover' },
-				gd = { '<cmd>Telescope lsp_definitions<cr>', 'Go to definition' },
-				gD = { '<cmd>lua vim.lsp.buf.declaration()<cr>', 'Go to declaration' },
-				gi = { '<cmd>Telescope lsp_implementations<cr>', 'Go to implementations' },
-				go = { '<cmd>lua vim.lsp.buf.type_definition()<cr>', 'Go to type definition' },
-				gr = { '<cmd>Telescope lsp_references<cr>', 'Go to references' },
-				gs = { '<cmd>lua vim.lsp.buf.signature_help()<cr>', 'Show signature help' },
-				grr = { '<cmd>lua vim.lsp.buf.rename()<cr>', 'Rename' },
-				gca = { '<cmd>lua vim.lsp.buf.code_action()<cr>', 'Code action' },
-				gl = { '<cmd>lua vim.diagnostic.open_float()<cr>', 'Open diagnostic float' },
-				[']d'] = { '<cmd>lua vim.diagnostic.goto_next()<cr>', 'Go to next diagnostic' },
-				['[d'] = { '<cmd>lua vim.diagnostic.goto_prev()<cr>', 'Go to previous diagnostic' },
+				name = '+lsp',
+				K = { '<cmd>lua vim.lsp.buf.hover()<cr>', 'Show hover', opts },
+				gd = { '<cmd>Telescope lsp_definitions<cr>', 'Go to definition', opts },
+				gD = { '<cmd>lua vim.lsp.buf.declaration()<cr>', 'Go to declaration', opts },
+				gi = { '<cmd>Telescope lsp_implementations<cr>', 'Go to implementations', opts },
+				go = { '<cmd>lua vim.lsp.buf.type_definition()<cr>', 'Go to type definition', opts },
+				gr = { '<cmd>Telescope lsp_references<cr>', 'Go to references', opts },
+				grr = { '<cmd>lua vim.lsp.buf.rename()<cr>', 'Rename', opts },
+				gca = { '<cmd>lua vim.lsp.buf.code_action()<cr>', 'Code action', opts },
+				gl = { '<cmd>lua vim.diagnostic.open_float()<cr>', 'Open diagnostic float', opts },
+				[']d'] = { '<cmd>lua vim.diagnostic.goto_next()<cr>', 'Go to next diagnostic', opts },
+				['[d'] = { '<cmd>lua vim.diagnostic.goto_prev()<cr>', 'Go to previous diagnostic', opts },
 			})
 			if client.server_capabilities.documentSymbolProvider then
 				navic.attach(client, bufnr)

@@ -16,7 +16,7 @@ return {
 
 		wk.register({
 			['s'] = {
-				name = 'LSP Saga',
+				name = '+lspsaga',
 				['ca'] = { '<cmd>Lspsaga code_action<CR>', 'Code Action' },
 				['d'] = { '<cmd>Lspsaga peek_definition<CR>', 'Peek Definition' },
 				['o'] = { '<cmd>Lspsaga peek_type_definition<CR>', 'Peek Type Definition' },
