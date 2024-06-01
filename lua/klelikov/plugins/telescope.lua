@@ -4,7 +4,6 @@ return {
 	dependencies = {
 		'nvim-lua/plenary.nvim',
 		'nvim-telescope/telescope-fzf-native.nvim',
-		'nvim-telescope/telescope-frecency.nvim',
 	},
 	config = function()
 		local builtin = require('telescope.builtin')
@@ -20,12 +19,8 @@ return {
 				h = { builtin.help_tags, '[F]ind [H]elp tags' },
 				r = { builtin.registers, '[F]ind [R]egisters' },
 				c = { builtin.command_history, '[F]ind [C]ommand history' },
-				o = {
-					'<Cmd>Telescope frecency<CR>',
-					'[F]ind [O]ld files',
-				},
 				m = {
-					'<Cmd>Telescope marks<CR>',
+          builtin.marks,
 					'[F]ind [M]arks',
 				},
 				B = {
@@ -50,6 +45,5 @@ return {
 			},
 		})
 		telescope.load_extension('fzf')
-		telescope.load_extension('frecency')
 	end,
 }

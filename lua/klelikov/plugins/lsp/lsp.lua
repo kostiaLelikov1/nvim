@@ -12,6 +12,7 @@ return {
 		local mason = require('mason')
 		local mason_lspconfig = require('mason-lspconfig')
 		local navic = require('nvim-navic')
+		local wk = require('which-key')
 
 		lsp_zero.set_sign_icons({
 			error = '✘',
@@ -29,18 +30,20 @@ return {
 		lsp_zero.on_attach(function(client, bufnr)
 			local opts = { buffer = bufnr }
 
-			vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-			vim.keymap.set('n', 'gd', '<cmd>Telescope lsp_definitions<cr>', opts)
-			vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
-			vim.keymap.set('n', 'gi', '<cmd>Telescope lsp_implementations<cr>', opts)
-			vim.keymap.set('n', 'go', vim.lsp.buf.type_definition, opts)
-			vim.keymap.set('n', 'gr', '<cmd>Telescope lsp_references<cr>', opts)
-			vim.keymap.set('n', 'gs', vim.lsp.buf.signature_help, opts)
-			vim.keymap.set('n', 'grr', vim.lsp.buf.rename, opts)
-			vim.keymap.set('n', 'gca', vim.lsp.buf.code_action, opts)
-			vim.keymap.set('n', 'gl', vim.diagnostic.open_float, opts)
-			vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-			vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
+			wk.register({
+				K = { '<cmd>lua vim.lsp.buf.hover()<cr>', 'Show hover' },
+				gd = { '<cmd>Telescope lsp_definitions<cr>', 'Go to definition' },
+				gD = { '<cmd>lua vim.lsp.buf.declaration()<cr>', 'Go to declaration' },
+				gi = { '<cmd>Telescope lsp_implementations<cr>', 'Go to implementations' },
+				go = { '<cmd>lua vim.lsp.buf.type_definition()<cr>', 'Go to type definition' },
+				gr = { '<cmd>Telescope lsp_references<cr>', 'Go to references' },
+				gs = { '<cmd>lua vim.lsp.buf.signature_help()<cr>', 'Show signature help' },
+				grr = { '<cmd>lua vim.lsp.buf.rename()<cr>', 'Rename' },
+				gca = { '<cmd>lua vim.lsp.buf.code_action()<cr>', 'Code action' },
+				gl = { '<cmd>lua vim.diagnostic.open_float()<cr>', 'Open diagnostic float' },
+				[']d'] = { '<cmd>lua vim.diagnostic.goto_next()<cr>', 'Go to next diagnostic' },
+				['[d'] = { '<cmd>lua vim.diagnostic.goto_prev()<cr>', 'Go to previous diagnostic' },
+			})
 			if client.server_capabilities.documentSymbolProvider then
 				navic.attach(client, bufnr)
 			end
