@@ -1,29 +1,45 @@
 return {
 	'folke/trouble.nvim',
 	dependencies = { 'nvim-tree/nvim-web-devicons' },
-	opts = {
-		position = 'right',
-		width = 40,
-	},
 	config = function()
-		local keymap = vim.keymap
-		keymap.set('n', '<leader>xx', function()
-			require('trouble').toggle()
-		end, { desc = 'Toggle Trouble' })
-		keymap.set('n', '<leader>xw', function()
-			require('trouble').toggle('workspace_diagnostics')
-		end, { desc = 'Trouble Workspace Diagnostics' })
-		keymap.set('n', '<leader>xd', function()
-			require('trouble').toggle('document_diagnostics')
-		end, { desc = 'Trouble Document Diagnostics' })
-		keymap.set('n', '<leader>xq', function()
-			require('trouble').toggle('quickfix')
-		end, { desc = 'Trouble Quickfix' })
-		keymap.set('n', '<leader>xl', function()
-			require('trouble').toggle('loclist')
-		end)
-		keymap.set('n', 'gR', function()
-			require('trouble').toggle('lsp_references')
-		end)
+		local trouble = require('trouble')
+		local wk = require('which-key')
+
+		trouble.setup({
+			position = 'right',
+			width = 40,
+		})
+
+		wk.register({
+			name = 'Trouble',
+			xx = {
+				'<cmd>Trouble diagnostics toggle<cr>',
+				'Diagnostics (Trouble)',
+			},
+			xe = {
+				'<cmd>Trouble diagnostics toggle filter.severity=vim.diagnostic.severity.ERROR<cr>',
+				'Diagnostics (Trouble) - Errors',
+			},
+			xX = {
+				'<cmd>Trouble diagnostics toggle filter.buf=0<cr>',
+				'Buffer Diagnostics (Trouble)',
+			},
+			cs = {
+				'<cmd>Trouble symbols toggle focus=false<cr>',
+				'Symbols (Trouble)',
+			},
+			cl = {
+				'<cmd>Trouble lsp toggle focus=false win.position=right<cr>',
+				'LSP Definitions / references / ... (Trouble)',
+			},
+			xL = {
+				'<cmd>Trouble loclist toggle<cr>',
+				'Location List (Trouble)',
+			},
+			xQ = {
+				'<cmd>Trouble qflist toggle<cr>',
+				'Quickfix List (Trouble)',
+			},
+		}, { prefix = '<leader>' })
 	end,
 }

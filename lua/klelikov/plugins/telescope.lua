@@ -28,6 +28,14 @@ return {
 					'<Cmd>Telescope marks<CR>',
 					'[F]ind [M]arks',
 				},
+				B = {
+          builtin.git_branches,
+					'[F]ind [B]ranches',
+				},
+				C = {
+          builtin.git_commits,
+					'[F]ind [C]ommits',
+				},
 			},
 		}, { prefix = '<leader>' })
 
