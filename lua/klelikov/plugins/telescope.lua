@@ -20,19 +20,19 @@ return {
 				r = { builtin.registers, '[F]ind [R]egisters' },
 				c = { builtin.command_history, '[F]ind [C]ommand history' },
 				m = {
-          builtin.marks,
+					':Telescope grapple tags<cr>',
 					'[F]ind [M]arks',
 				},
-        n = {
-          ':Telescope neoclip<CR>',
-          '[F]ind [N]eoclip',
-        },
+				n = {
+					':Telescope neoclip<CR>',
+					'[F]ind [N]eoclip',
+				},
 				B = {
-          builtin.git_branches,
+					builtin.git_branches,
 					'[F]ind [B]ranches',
 				},
 				C = {
-          builtin.git_commits,
+					builtin.git_commits,
 					'[F]ind [C]ommits',
 				},
 			},
@@ -49,5 +49,6 @@ return {
 			},
 		})
 		telescope.load_extension('fzf')
+		telescope.load_extension('grapple')
 	end,
 }

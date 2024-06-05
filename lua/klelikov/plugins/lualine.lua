@@ -105,22 +105,6 @@ return {
 			return tabline
 		end
 
-		local function mark_indicator()
-			local marks = { 'A', 'S', 'D', 'F' }
-			local result = {}
-
-			for _, mark in ipairs(marks) do
-				local position = vim.fn.getpos("'" .. mark)
-				if position[2] ~= 0 then
-					table.insert(result, string.format(' %s ', mark:upper()))
-				else
-					table.insert(result, string.format('[%s]', mark:upper()))
-				end
-			end
-
-			return table.concat(result, '|')
-		end
-
 		require('lualine').setup({
 			options = {
 				theme = 'catppuccin',
@@ -153,7 +137,7 @@ return {
 				lualine_a = { 'mode' },
 				lualine_b = { 'branch', 'diff', 'diagnostics' },
 				lualine_c = { { 'filename', path = 1 } },
-				lualine_x = { mark_indicator, 'encoding' },
+				lualine_x = { 'encoding' },
 				lualine_y = {
 					{
 						function()

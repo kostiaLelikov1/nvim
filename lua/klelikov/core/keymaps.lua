@@ -60,27 +60,3 @@ local function set_tab_keymaps()
 end
 
 set_tab_keymaps()
-
-vim.keymap.set('n', '<leader>mc', ':delmarks A-Z0-9<CR>', { desc = 'Clear marks' })
-
-local mark = function(key)
-	return function()
-		vim.cmd('mark ' .. key)
-	end
-end
-
-vim.keymap.set('n', '<A-S-a>', mark('A'))
-vim.keymap.set('n', '<A-S-s>', mark('S'))
-vim.keymap.set('n', '<A-S-d>', mark('D'))
-vim.keymap.set('n', '<A-S-f>', mark('F'))
-
-local goto_mark = function(key)
-	return function()
-		vim.cmd("normal! '" .. key)
-	end
-end
-
-vim.keymap.set('n', '<A-a>', goto_mark('A'))
-vim.keymap.set('n', '<A-s>', goto_mark('S'))
-vim.keymap.set('n', '<A-d>', goto_mark('D'))
-vim.keymap.set('n', '<A-f>', goto_mark('F'))
