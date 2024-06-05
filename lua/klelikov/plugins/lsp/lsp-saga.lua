@@ -3,9 +3,6 @@ return {
 	config = function()
 		local wk = require('which-key')
 		require('lspsaga').setup({
-			symbol_in_winbar = {
-				enable = false,
-			},
 			lightbulb = {
 				enable = false,
 			},
@@ -23,7 +20,8 @@ return {
 				['f'] = { '<cmd>Lspsaga finder<CR>', 'LSP Finder' },
 				['t'] = { '<cmd>Lspsaga term_toggle<CR>', 'Open Float Terminal' },
 				['l'] = { '<cmd>Lspsaga outline<CR>', 'LSP Outline' },
-        ['rr'] = { '<cmd>Lspsaga rename<CR>', 'Rename' },
+				['rr'] = { '<cmd>Lspsaga rename<CR>', 'Rename' },
+				['K'] = { '<cmd>Lspsaga hover_doc<CR>', 'Hover Doc' },
 			},
 		}, { prefix = 'g' })
 	end,

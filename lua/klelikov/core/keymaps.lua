@@ -24,6 +24,8 @@ keymap.set('i', '<c-j>', '<C-o>j', { desc = 'Move cursor down' })
 keymap.set('i', '<c-k>', '<C-o>k', { desc = 'Move cursor up' })
 keymap.set('i', '<c-l>', '<C-o>l', { desc = 'Move cursor right' })
 
+keymap.set('n', '<leader>s', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = 'Replace word to new' })
+
 local function delete_hidden_buffers(options)
 	local force = options and options.force or false
 	local buffers = vim.api.nvim_list_bufs()
@@ -46,7 +48,7 @@ keymap.set('n', '<leader>qq', ':bd<CR>', { desc = 'Close buffer' })
 
 keymap.set('n', '<leader>tq', ':tabclose<CR>', { desc = 'Close tab' })
 keymap.set('n', '<leader>tn', ':$tabnew<CR>', { desc = 'New tab' })
-keymap.set('n', '<leader>tqa', ':tabonly<CR>', { desc = 'Close all tabs except current' })
+keymap.set('n', '<leader>tQ', ':tabonly<CR>', { desc = 'Close all tabs except current' })
 
 local function set_tab_keymaps()
 	for i = 1, 9 do
@@ -73,14 +75,12 @@ vim.keymap.set('n', '<A-S-d>', mark('D'))
 vim.keymap.set('n', '<A-S-f>', mark('F'))
 
 local goto_mark = function(key)
-  return function()
-    vim.cmd('normal! \'' .. key)
-  end
+	return function()
+		vim.cmd("normal! '" .. key)
+	end
 end
 
 vim.keymap.set('n', '<A-a>', goto_mark('A'))
 vim.keymap.set('n', '<A-s>', goto_mark('S'))
 vim.keymap.set('n', '<A-d>', goto_mark('D'))
 vim.keymap.set('n', '<A-f>', goto_mark('F'))
-
-

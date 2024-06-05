@@ -9,6 +9,8 @@ opt.expandtab = true
 opt.autoindent = true
 opt.wrap = false
 opt.showtabline = 2
+opt.encoding = 'utf-8'
+opt.fileencoding = 'utf-8'
 
 opt.ignorecase = true
 opt.smartcase = true
@@ -19,7 +21,7 @@ opt.termguicolors = true
 opt.background = 'dark'
 opt.signcolumn = 'yes'
 opt.backspace = 'indent,eol,start'
-opt.scrolloff = 10
+opt.scrolloff = 7
 
 opt.clipboard:append('unnamedplus')
 

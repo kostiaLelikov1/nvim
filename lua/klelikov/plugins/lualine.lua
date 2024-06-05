@@ -147,13 +147,7 @@ return {
 				lualine_y = {
 					{ git_blame.get_current_blame_text, cond = git_blame.is_blame_text_available },
 				},
-				lualine_z = {
-					{
-						'navic',
-						color_correction = nil,
-						navic_opts = nil,
-					},
-				},
+				lualine_z = {},
 			},
 			sections = {
 				lualine_a = { 'mode' },

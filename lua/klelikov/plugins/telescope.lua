@@ -23,6 +23,10 @@ return {
           builtin.marks,
 					'[F]ind [M]arks',
 				},
+        n = {
+          ':Telescope neoclip<CR>',
+          '[F]ind [N]eoclip',
+        },
 				B = {
           builtin.git_branches,
 					'[F]ind [B]ranches',

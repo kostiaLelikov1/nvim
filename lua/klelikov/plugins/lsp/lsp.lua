@@ -5,13 +5,11 @@ return {
 		'neovim/nvim-lspconfig',
 		'williamboman/mason.nvim',
 		'williamboman/mason-lspconfig.nvim',
-		'SmiteshP/nvim-navic',
 	},
 	config = function()
 		local lsp_zero = require('lsp-zero')
 		local mason = require('mason')
 		local mason_lspconfig = require('mason-lspconfig')
-		local navic = require('nvim-navic')
 		local wk = require('which-key')
 
 		lsp_zero.set_sign_icons({
@@ -44,9 +42,6 @@ return {
 				[']d'] = { '<cmd>lua vim.diagnostic.goto_next()<cr>', 'Go to next diagnostic', opts },
 				['[d'] = { '<cmd>lua vim.diagnostic.goto_prev()<cr>', 'Go to previous diagnostic', opts },
 			})
-			if client.server_capabilities.documentSymbolProvider then
-				navic.attach(client, bufnr)
-			end
 		end)
 
 		mason.setup({})
@@ -59,7 +54,7 @@ return {
 				'cssls',
 				'cssmodules_ls',
 				'pyright',
-        'astro',
+				'astro',
 			},
 			handlers = {
 				lsp_zero.default_setup,
