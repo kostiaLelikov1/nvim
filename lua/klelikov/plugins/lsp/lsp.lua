@@ -5,6 +5,7 @@ return {
 		'neovim/nvim-lspconfig',
 		'williamboman/mason.nvim',
 		'williamboman/mason-lspconfig.nvim',
+		'HallerPatrick/py_lsp.nvim',
 	},
 	config = function()
 		local lsp_zero = require('lsp-zero')
@@ -74,6 +75,12 @@ return {
 			automatic_installation = true,
 		})
 
+		require('lspconfig').gleam.setup({
+			on_attach = function(client, bufnr)
+				lsp_zero.default_setup(client, bufnr)
+			end,
+		})
+
 		lsp_zero.set_server_config({
 			capabilities = {
 				textDocument = {
@@ -93,5 +100,7 @@ return {
 			},
 			update_in_insert = true,
 		})
+
+		require('py_lsp').setup({})
 	end,
 }

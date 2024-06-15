@@ -36,6 +36,7 @@ return {
 				'solidity',
 				'sql',
 				'yaml',
+				'gleam',
 			},
 			incremental_selection = {
 				enable = true,
