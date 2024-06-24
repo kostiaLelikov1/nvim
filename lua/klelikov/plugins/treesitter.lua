@@ -30,6 +30,7 @@ return {
 				'markdown_inline',
 				'lua',
 				'vim',
+        'vimdoc',
 				'dockerfile',
 				'gitignore',
 				'latex',
