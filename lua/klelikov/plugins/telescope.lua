@@ -39,6 +39,9 @@ return {
 		}, { prefix = '<leader>' })
 
 		telescope.setup({
+			defaults = {
+				layout_strategy = 'vertical',
+			},
 			extensions = {
 				fzf = {
 					fuzzy = true,

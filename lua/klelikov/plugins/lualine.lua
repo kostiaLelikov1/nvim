@@ -1,8 +1,9 @@
 return {
 	'nvim-lualine/lualine.nvim',
-	dependencies = { 'nvim-tree/nvim-web-devicons', 'f-person/git-blame.nvim' },
+	dependencies = { 'nvim-tree/nvim-web-devicons', 'f-person/git-blame.nvim', 'will-lynas/grapple-line.nvim' },
 	config = function()
 		local git_blame = require('gitblame')
+		local grapple_line = require('grapple-line')
 		vim.g.gitblame_display_virtual_text = 0
 		vim.g.gitblame_message_template = '<summary> • <date> • <author>'
 		vim.g.gitblame_date_format = '%Y-%m-%d'
@@ -136,8 +137,8 @@ return {
 			sections = {
 				lualine_a = { 'mode' },
 				lualine_b = { 'branch', 'diff', 'diagnostics' },
-				lualine_c = { { 'filename', path = 1 } },
-				lualine_x = { 'encoding' },
+				lualine_c = { grapple_line.status },
+				lualine_x = {},
 				lualine_y = {
 					{
 						function()
