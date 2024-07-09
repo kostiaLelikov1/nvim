@@ -26,7 +26,7 @@ return {
 			update_on_delete = true,
 		})
 
-		lsp_zero.on_attach(function(client, bufnr)
+		lsp_zero.on_attach(function(_, bufnr)
 			local opts = { buffer = bufnr }
 
 			wk.register({
