@@ -60,3 +60,11 @@ local function set_tab_keymaps()
 end
 
 set_tab_keymaps()
+
+vim.keymap.set('n', '<A-Up>', ':resize -2<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<A-Down>', ':resize +2<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<A-Left>', ':vertical resize -2<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<A-Right>', ':vertical resize +2<CR>', { noremap = true, silent = true })
+
+vim.keymap.set('n', '<leader>wm', ':resize | vertical resize<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>we', ':wincmd =<CR>', { noremap = true, silent = true })
