@@ -56,6 +56,7 @@ return {
 				'cssmodules_ls',
 				'pyright',
 				'astro',
+				'tailwindcss',
 			},
 			handlers = {
 				lsp_zero.default_setup,
