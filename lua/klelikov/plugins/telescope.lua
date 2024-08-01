@@ -35,12 +35,26 @@ return {
 					builtin.git_commits,
 					'[F]ind [C]ommits',
 				},
+				H = {
+					':Telescope git_file_history<cr>',
+					'[F]ind [H]istory',
+				},
 			},
 		}, { prefix = '<leader>' })
 
 		telescope.setup({
 			defaults = {
 				layout_strategy = 'vertical',
+				mappings = {
+					i = {
+						['<C-u>'] = require('telescope.actions').preview_scrolling_up,
+						['<C-d>'] = require('telescope.actions').preview_scrolling_down,
+					},
+					n = {
+						['<C-u>'] = require('telescope.actions').preview_scrolling_up,
+						['<C-d>'] = require('telescope.actions').preview_scrolling_down,
+					},
+				},
 			},
 			extensions = {
 				fzf = {
