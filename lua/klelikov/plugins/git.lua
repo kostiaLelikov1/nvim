@@ -20,11 +20,11 @@ return {
 			}, { prefix = '<leader>' })
 		end,
 	},
-  {
-    'isak102/telescope-git-file-history.nvim',
-    dependancies = {
-      'nvim-lua/plenary.nvim',
-      'nvim-telescope/telescope.nvim',
-    },
-  }
+	{
+		'isak102/telescope-git-file-history.nvim',
+		dependancies = {
+			'nvim-lua/plenary.nvim',
+			'nvim-telescope/telescope.nvim',
+		},
+	},
 }

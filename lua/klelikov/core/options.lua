@@ -35,4 +35,4 @@ vim.o.statuscolumn = '%s %-3l %-3r  '
 vim.opt.spelllang = 'en_us'
 vim.opt.spell = true
 
-vim.cmd("language en_US.UTF-8")
+vim.cmd('language en_US.UTF-8')

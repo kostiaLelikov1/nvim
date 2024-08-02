@@ -4,6 +4,6 @@ return {
 	opts = {},
 	config = function()
 		local ibl = require('ibl')
-    ibl.setup()
+		ibl.setup()
 	end,
 }
