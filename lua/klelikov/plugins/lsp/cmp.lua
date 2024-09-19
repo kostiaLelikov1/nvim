@@ -13,12 +13,11 @@ return {
 		local cmp_format = require('lsp-zero').cmp_format()
 		local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 		local luasnip = require('luasnip')
-
 		cmp.setup({
 			sources = {
-				{ name = 'copilot', group_index = 2 },
-				{ name = 'path' },
+				{ name = 'supermaven' },
 				{ name = 'nvim_lsp' },
+				{ name = 'path' },
 				{ name = 'luasnip', keyword_length = 2 },
 				{ name = 'buffer', keyword_length = 3 },
 			},
@@ -33,27 +32,22 @@ return {
 			},
 			mapping = cmp.mapping.preset.insert({
 				['<CR>'] = cmp.mapping.confirm({
-					behavior = cmp.ConfirmBehavior.Replace,
 					select = false,
 				}),
 				['<C-d>'] = cmp.mapping.scroll_docs(-4),
 				['<C-u>'] = cmp.mapping.scroll_docs(4),
-				['<C-Space>'] = cmp.mapping.complete(),
 				['<C-e>'] = cmp.mapping.abort(),
+				['<Tab>'] = function(fallback)
+					if cmp.visible() then
+						cmp.select_next_item()
+					else
+						fallback()
+					end
+				end,
 			}),
 			formatting = cmp_format,
 		})
 
 		cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
-
-		local autocomplete_group = vim.api.nvim_create_augroup('vimrc_autocompletion', { clear = true })
-
-		vim.api.nvim_create_autocmd('FileType', {
-			pattern = { 'sql', 'mysql', 'plsql' },
-			callback = function()
-				cmp.setup.buffer({ sources = { { name = 'vim-dadbod-completion' } } })
-			end,
-			group = autocomplete_group,
-		})
 	end,
 }
