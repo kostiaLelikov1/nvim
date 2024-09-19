@@ -33,26 +33,16 @@ return {
 			},
 		})
 
-		wk.register({
-			e = {
-				name = 'explorer',
-				e = {
-					'<cmd>NvimTreeToggle<CR>',
-					'Toggle file explorer',
-				},
-				f = {
-					'<cmd>NvimTreeFindFileToggle<CR>',
-					'Toggle file explorer on current file',
-				},
-				c = {
-					'<cmd>NvimTreeCollapse<CR>',
-					'Collapse file explorer',
-				},
-				r = {
-					'<cmd>NvimTreeRefresh<CR>',
-					'Refresh file explorer',
-				},
-			},
-		}, { prefix = '<leader>' })
+		wk.add({
+			{ '<leader>e', group = 'Explorer' }, -- Define the 'Explorer' group with the prefix '<leader>e'
+
+			-- Individual key mappings under the '<leader>e' prefix
+			{ '<leader>ee', '<cmd>NvimTreeToggle<CR>', desc = 'Toggle File Explorer' },
+			{ '<leader>ef', '<cmd>NvimTreeFindFileToggle<CR>', desc = 'Toggle File Explorer on Current File' },
+			{ '<leader>ec', '<cmd>NvimTreeCollapse<CR>', desc = 'Collapse File Explorer' },
+			{ '<leader>er', '<cmd>NvimTreeRefresh<CR>', desc = 'Refresh File Explorer' },
+		}, {
+			mode = 'n', -- Apply these mappings in NORMAL mode
+		})
 	end,
 }

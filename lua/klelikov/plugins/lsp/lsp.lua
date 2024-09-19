@@ -27,21 +27,25 @@ return {
 		})
 
 		lsp_zero.on_attach(function(_, bufnr)
-			local opts = { buffer = bufnr }
+			wk.add({
+				{ 'g', group = '+LSP', buffer = bufnr }, -- Define the LSP group with 'g' prefix for the buffer
 
-			wk.register({
-				name = '+lsp',
-				K = { '<cmd>lua vim.lsp.buf.hover()<cr>', 'Show hover', opts },
-				gd = { '<cmd>Telescope lsp_definitions<cr>', 'Go to definition', opts },
-				gD = { '<cmd>lua vim.lsp.buf.declaration()<cr>', 'Go to declaration', opts },
-				gi = { '<cmd>Telescope lsp_implementations<cr>', 'Go to implementations', opts },
-				go = { '<cmd>lua vim.lsp.buf.type_definition()<cr>', 'Go to type definition', opts },
-				gr = { '<cmd>Telescope lsp_references<cr>', 'Go to references', opts },
-				grr = { '<cmd>lua vim.lsp.buf.rename()<cr>', 'Rename', opts },
-				gca = { '<cmd>lua vim.lsp.buf.code_action()<cr>', 'Code action', opts },
-				gl = { '<cmd>lua vim.diagnostic.open_float()<cr>', 'Open diagnostic float', opts },
-				[']d'] = { '<cmd>lua vim.diagnostic.goto_next()<cr>', 'Go to next diagnostic', opts },
-				['[d'] = { '<cmd>lua vim.diagnostic.goto_prev()<cr>', 'Go to previous diagnostic', opts },
+				-- Individual key mappings with buffer-specific options
+				{ 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', desc = 'Show Hover', buffer = bufnr },
+				{ 'gd', '<cmd>Telescope lsp_definitions<cr>', desc = 'Go to Definition', buffer = bufnr },
+				{ 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', desc = 'Go to Declaration', buffer = bufnr },
+				{ 'gi', '<cmd>Telescope lsp_implementations<cr>', desc = 'Go to Implementations', buffer = bufnr },
+				{ 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>', desc = 'Go to Type Definition', buffer = bufnr },
+				{ 'gr', '<cmd>Telescope lsp_references<cr>', desc = 'Go to References', buffer = bufnr },
+				{ 'grr', '<cmd>lua vim.lsp.buf.rename()<cr>', desc = 'Rename', buffer = bufnr },
+				{ 'gca', '<cmd>lua vim.lsp.buf.code_action()<cr>', desc = 'Code Action', buffer = bufnr },
+				{ 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>', desc = 'Open Diagnostic Float', buffer = bufnr },
+
+				-- Diagnostic navigation mappings with buffer-specific options
+				{ ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>', desc = 'Go to Next Diagnostic', buffer = bufnr },
+				{ '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>', desc = 'Go to Previous Diagnostic', buffer = bufnr },
+			}, {
+				mode = 'n', -- Apply these mappings in NORMAL mode
 			})
 		end)
 

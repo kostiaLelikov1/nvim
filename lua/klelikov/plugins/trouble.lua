@@ -10,36 +10,27 @@ return {
 			width = 40,
 		})
 
-		wk.register({
-			name = 'Trouble',
-			xx = {
-				'<cmd>Trouble diagnostics toggle<cr>',
-				'Diagnostics (Trouble)',
-			},
-			xe = {
+		wk.add({
+			{ '<leader>x', group = 'Trouble' }, -- Define the 'Trouble' group with the prefix '<leader>x'
+
+			-- Individual key mappings under the '<leader>x' prefix
+			{ '<leader>xx', '<cmd>Trouble diagnostics toggle<cr>', desc = 'Diagnostics (Trouble)' },
+			{
+				'<leader>xe',
 				'<cmd>Trouble diagnostics toggle filter.severity=vim.diagnostic.severity.ERROR<cr>',
-				'Diagnostics (Trouble) - Errors',
+				desc = 'Diagnostics (Trouble) - Errors',
 			},
-			xX = {
-				'<cmd>Trouble diagnostics toggle filter.buf=0<cr>',
-				'Buffer Diagnostics (Trouble)',
-			},
-			cs = {
-				'<cmd>Trouble symbols toggle focus=false<cr>',
-				'Symbols (Trouble)',
-			},
-			cl = {
+			{ '<leader>xX', '<cmd>Trouble diagnostics toggle filter.buf=0<cr>', desc = 'Buffer Diagnostics (Trouble)' },
+			{ '<leader>cs', '<cmd>Trouble symbols toggle focus=false<cr>', desc = 'Symbols (Trouble)' },
+			{
+				'<leader>cl',
 				'<cmd>Trouble lsp toggle focus=false win.position=right<cr>',
-				'LSP Definitions / references / ... (Trouble)',
+				desc = 'LSP Definitions / References (Trouble)',
 			},
-			xL = {
-				'<cmd>Trouble loclist toggle<cr>',
-				'Location List (Trouble)',
-			},
-			xQ = {
-				'<cmd>Trouble qflist toggle<cr>',
-				'Quickfix List (Trouble)',
-			},
-		}, { prefix = '<leader>' })
+			{ '<leader>xL', '<cmd>Trouble loclist toggle<cr>', desc = 'Location List (Trouble)' },
+			{ '<leader>xQ', '<cmd>Trouble qflist toggle<cr>', desc = 'Quickfix List (Trouble)' },
+		}, {
+			mode = 'n', -- Apply these mappings in NORMAL mode
+		})
 	end,
 }

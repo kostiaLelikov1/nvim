@@ -10,37 +10,24 @@ return {
 		local telescope = require('telescope')
 		local wk = require('which-key')
 
-		wk.register({
-			f = {
-				name = '+find',
-				f = { builtin.find_files, '[F]ind [F]iles' },
-				g = { builtin.live_grep, '[F]ind [G]rep' },
-				b = { builtin.buffers, '[F]ind [B]uffers' },
-				h = { builtin.help_tags, '[F]ind [H]elp tags' },
-				r = { builtin.registers, '[F]ind [R]egisters' },
-				c = { builtin.command_history, '[F]ind [C]ommand history' },
-				m = {
-					':Telescope grapple tags<cr>',
-					'[F]ind [M]arks',
-				},
-				n = {
-					':Telescope neoclip<CR>',
-					'[F]ind [N]eoclip',
-				},
-				B = {
-					builtin.git_branches,
-					'[F]ind [B]ranches',
-				},
-				C = {
-					builtin.git_commits,
-					'[F]ind [C]ommits',
-				},
-				H = {
-					':Telescope git_file_history<cr>',
-					'[F]ind [H]istory',
-				},
-			},
-		}, { prefix = '<leader>' })
+		wk.add({
+			{ '<leader>f', group = 'Find' }, -- Define the 'Find' group with the prefix '<leader>f'
+
+			-- Individual key mappings under the '<leader>f' prefix
+			{ '<leader>ff', builtin.find_files, desc = 'Find Files' },
+			{ '<leader>fg', builtin.live_grep, desc = 'Find Grep' },
+			{ '<leader>fb', builtin.buffers, desc = 'Find Buffers' },
+			{ '<leader>fh', builtin.help_tags, desc = 'Find Help Tags' },
+			{ '<leader>fr', builtin.registers, desc = 'Find Registers' },
+			{ '<leader>fc', builtin.command_history, desc = 'Find Command History' },
+			{ '<leader>fm', ':Telescope grapple tags<cr>', desc = 'Find Marks' },
+			{ '<leader>fn', ':Telescope neoclip<CR>', desc = 'Find Neoclip' },
+			{ '<leader>fB', builtin.git_branches, desc = 'Find Branches' },
+			{ '<leader>fC', builtin.git_commits, desc = 'Find Commits' },
+			{ '<leader>fH', ':Telescope git_file_history<cr>', desc = 'Find History' },
+		}, {
+			mode = 'n', -- Apply these mappings in NORMAL mode
+		})
 
 		telescope.setup({
 			defaults = {

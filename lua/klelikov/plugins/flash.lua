@@ -13,28 +13,33 @@ return {
 			},
 		})
 
-		wk.register({
-			l = {
-				name = 'flash',
-				s = {
-					function()
-						flash.jump()
-					end,
-					'Flash jump',
-				},
-				t = {
-					function()
-						flash.treesitter()
-					end,
-					'Flash treesitter',
-				},
-				r = {
-					function()
-						flash.treesitter_search()
-					end,
-					'Flash treesitter search',
-				},
+		wk.add({
+			{ '<leader>l', group = 'Flash' }, -- Define the group with the prefix '<leader>l'
+
+			-- Individual key mappings under '<leader>l' prefix
+			{
+				'<leader>ls',
+				function()
+					flash.jump()
+				end,
+				desc = 'Flash Jump',
 			},
-		}, { prefix = '<leader>' })
+			{
+				'<leader>lt',
+				function()
+					flash.treesitter()
+				end,
+				desc = 'Flash Treesitter',
+			},
+			{
+				'<leader>lr',
+				function()
+					flash.treesitter_search()
+				end,
+				desc = 'Flash Treesitter Search',
+			},
+		}, {
+			mode = 'n', -- Set to NORMAL mode if needed
+		})
 	end,
 }
