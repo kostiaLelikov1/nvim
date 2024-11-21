@@ -1,11 +1,12 @@
 return {
 	'VonHeikemen/lsp-zero.nvim',
-	branch = 'v3.x',
+	branch = 'v4.x',
 	dependencies = {
 		'neovim/nvim-lspconfig',
 		'williamboman/mason.nvim',
 		'williamboman/mason-lspconfig.nvim',
 		'HallerPatrick/py_lsp.nvim',
+		'hrsh7th/cmp-nvim-lsp',
 	},
 	config = function()
 		local lsp_zero = require('lsp-zero')
@@ -26,7 +27,7 @@ return {
 			update_on_delete = true,
 		})
 
-		lsp_zero.on_attach(function(_, bufnr)
+		local lsp_attach = function(_, bufnr)
 			wk.add({
 				{ 'g', group = '+LSP', buffer = bufnr }, -- Define the LSP group with 'g' prefix for the buffer
 
@@ -47,12 +48,19 @@ return {
 			}, {
 				mode = 'n', -- Apply these mappings in NORMAL mode
 			})
-		end)
+		end
+
+		lsp_zero.extend_lspconfig({
+			capabilities = require('cmp_nvim_lsp').default_capabilities(),
+			lsp_attach = lsp_attach,
+			sign_test = true,
+			float_border = 'rounded',
+		})
 
 		mason.setup({})
 		mason_lspconfig.setup({
 			ensure_installed = {
-				'tsserver',
+				'ts_ls',
 				'lua_ls',
 				'eslint',
 				'prismals',
@@ -61,6 +69,7 @@ return {
 				'pyright',
 				'astro',
 				'tailwindcss',
+				'jsonls',
 			},
 			handlers = {
 				lsp_zero.default_setup,

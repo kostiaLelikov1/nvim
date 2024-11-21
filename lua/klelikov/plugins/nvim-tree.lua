@@ -41,6 +41,7 @@ return {
 			{ '<leader>ef', '<cmd>NvimTreeFindFileToggle<CR>', desc = 'Toggle File Explorer on Current File' },
 			{ '<leader>ec', '<cmd>NvimTreeCollapse<CR>', desc = 'Collapse File Explorer' },
 			{ '<leader>er', '<cmd>NvimTreeRefresh<CR>', desc = 'Refresh File Explorer' },
+			{ '<leader>eo', '<cmd>NvimTreeFocus<CR>', desc = 'Focus File Explorer' },
 		}, {
 			mode = 'n', -- Apply these mappings in NORMAL mode
 		})

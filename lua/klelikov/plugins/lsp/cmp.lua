@@ -10,7 +10,7 @@ return {
 	},
 	config = function()
 		local cmp = require('cmp')
-		local cmp_format = require('lsp-zero').cmp_format()
+    local cmp_format = require('lsp-zero').cmp_format()
 		local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 		local luasnip = require('luasnip')
 		cmp.setup({
@@ -45,7 +45,7 @@ return {
 					end
 				end,
 			}),
-			formatting = cmp_format,
+      formatting = cmp_format,
 		})
 
 		cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
