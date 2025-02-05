@@ -63,3 +63,5 @@ vim.keymap.set('n', '<A-Right>', ':vertical resize +2<CR>', { noremap = true, si
 
 vim.keymap.set('n', '<leader>wm', ':resize | vertical resize<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<leader>we', ':wincmd =<CR>', { noremap = true, silent = true })
+
+vim.keymap.set('n', '<leader>ax', ':AvanteClear<CR>')

@@ -38,6 +38,7 @@ return {
 				'sql',
 				'yaml',
 				'gleam',
+				'ruby',
 			},
 			incremental_selection = {
 				enable = true,
