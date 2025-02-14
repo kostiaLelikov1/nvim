@@ -70,6 +70,7 @@ return {
 				'astro',
 				'tailwindcss',
 				'jsonls',
+        'solargraph',
 			},
 			handlers = {
 				lsp_zero.default_setup,
