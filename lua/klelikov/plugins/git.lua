@@ -18,7 +18,7 @@ return {
 				{ '<leader>gp', "<cmd>lua require'gitsigns'.preview_hunk()<CR>", desc = 'Preview Hunk' },
 				{ '<leader>gb', "<cmd>lua require'gitsigns'.blame_line()<CR>", desc = 'Blame Line' },
 				{ '<leader>gd', "<cmd>lua require'gitsigns'.diffthis()<CR>", desc = 'Diff This' },
-				
+
 				-- Navigation
 				{ ']g', "<cmd>lua require'gitsigns'.next_hunk()<CR>", desc = 'Next Git Hunk' },
 				{ '[g', "<cmd>lua require'gitsigns'.prev_hunk()<CR>", desc = 'Previous Git Hunk' },

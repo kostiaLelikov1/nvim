@@ -1,13 +1,14 @@
 return {
 	'CopilotC-Nvim/CopilotChat.nvim',
-	branch = 'canary',
+	branch = 'main',
 	dependencies = {
 		{ 'zbirenbaum/copilot.lua' },
 		{ 'nvim-lua/plenary.nvim' },
 	},
+  build = "make tiktoken",
 	opts = {
 		debug = false, -- Enable debugging
-		model = 'gpt-4o', -- GPT-4 Omni model
+    model = 'claude-3.7-sonnet',
 		prompts = {
 			Explain = {
 				prompt = 'Explain how the following code works in detail.',

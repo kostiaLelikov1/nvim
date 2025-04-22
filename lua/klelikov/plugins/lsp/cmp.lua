@@ -12,11 +12,9 @@ return {
 		local cmp = require('cmp')
 		local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 		local luasnip = require('luasnip')
-		
-		-- Set up copilot-cmp
+
 		require('copilot_cmp').setup()
-		
-		-- Custom formatting function
+
 		local format_kinds = {
 			Text = '󰉿 Text',
 			Method = '󰆧 Method',
@@ -45,11 +43,11 @@ return {
 			TypeParameter = '󰊄 TypeParam',
 			Copilot = ' Copilot',
 		}
-		
+
 		cmp.setup({
 			sources = {
 				{ name = 'copilot', group_index = 1 },
-				{ name = 'nvim_lsp', group_index = 2 },
+				{ name = 'nvim_lsp', group_index = 1 },
 				{ name = 'path', group_index = 2 },
 				{ name = 'luasnip', keyword_length = 2, group_index = 2 },
 				{ name = 'buffer', keyword_length = 3, group_index = 3 },
@@ -89,7 +87,7 @@ return {
 				format = function(entry, vim_item)
 					-- Set the kind icon
 					vim_item.kind = format_kinds[vim_item.kind] or vim_item.kind
-					
+
 					-- Set the source name
 					vim_item.menu = ({
 						copilot = '[Copilot]',
@@ -98,7 +96,7 @@ return {
 						buffer = '[Buffer]',
 						path = '[Path]',
 					})[entry.source.name]
-					
+
 					return vim_item
 				end,
 			},

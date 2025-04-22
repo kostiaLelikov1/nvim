@@ -10,18 +10,18 @@ return {
 
 		-- Define leader key groups for better organization using the new format
 		wk.add({
-			{ "<leader>l", group = "LSP" },
-			{ "<leader>f", group = "Find" },
-			{ "<leader>g", group = "Git" },
-			{ "<leader>c", group = "Copilot" },
-			{ "<leader>e", group = "Explorer" },
-			{ "<leader>m", group = "Marks" },
-			{ "<leader>w", group = "Window" },
-			{ "<leader>b", group = "Buffer" },
-			{ "<leader>t", group = "Tabs" },
-			{ "<leader>q", group = "Quit" },
-			{ "<leader>x", group = "Text" },
-			{ "<leader>T", group = "Terminal" },
+			{ '<leader>l', group = 'LSP' },
+			{ '<leader>f', group = 'Find' },
+			{ '<leader>g', group = 'Git' },
+			{ '<leader>c', group = 'Copilot' },
+			{ '<leader>e', group = 'Explorer' },
+			{ '<leader>m', group = 'Marks' },
+			{ '<leader>w', group = 'Window' },
+			{ '<leader>b', group = 'Buffer' },
+			{ '<leader>t', group = 'Tabs' },
+			{ '<leader>q', group = 'Quit' },
+			{ '<leader>x', group = 'Text' },
+			{ '<leader>T', group = 'Terminal' },
 		})
 
 		-- Configure which-key options
@@ -44,9 +44,8 @@ return {
 			-- Replaced 'ignore_missing' with 'filter'
 			filter = function(trigger, mapping, mode)
 				return true -- Keep all mappings
-			 end,
+			end,
 			show_help = true,
-			triggers = { "<leader>" }, -- Changed from 'auto' to explicit triggers
 		})
 	end,
 }

@@ -92,12 +92,12 @@ return {
 			{ '<leader>fb', builtin.buffers, desc = 'Find Buffers' },
 			{ '<leader>fw', list_opened_windows, desc = 'Find Opened Windows' },
 			{ '<leader>fr', builtin.oldfiles, desc = 'Find Recent Files' },
-			
+
 			-- Help and documentation
 			{ '<leader>fh', builtin.help_tags, desc = 'Find Help' },
 			{ '<leader>fk', builtin.keymaps, desc = 'Find Keymaps' },
 			{ '<leader>fc', builtin.commands, desc = 'Find Commands' },
-			
+
 			-- LSP related searches
 			{ '<leader>ls', builtin.lsp_document_symbols, desc = 'Find Document Symbols' },
 			{ '<leader>lS', builtin.lsp_workspace_symbols, desc = 'Find Workspace Symbols' },
@@ -105,7 +105,7 @@ return {
 			{ '<leader>ld', builtin.lsp_definitions, desc = 'Find Definitions' },
 			{ '<leader>li', builtin.lsp_implementations, desc = 'Find Implementations' },
 			{ '<leader>lt', builtin.lsp_type_definitions, desc = 'Find Type Definitions' },
-			
+
 			-- Git related searches
 			{ '<leader>gc', builtin.git_commits, desc = 'Find Git Commits' },
 			{ '<leader>gb', builtin.git_branches, desc = 'Find Git Branches' },
@@ -136,10 +136,16 @@ return {
 					override_file_sorter = true,
 					case_mode = 'smart_case',
 				},
+				['ui-select'] = {
+					require('telescope.themes').get_dropdown({
+						-- even more opts
+					}),
+				},
 			},
 		})
 		telescope.load_extension('fzf')
 		telescope.load_extension('grapple')
 		telescope.load_extension('git_file_history')
+    telescope.load_extension('ui-select')
 	end,
 }
