@@ -6,20 +6,53 @@ return {
 		'hrsh7th/cmp-buffer',
 		'hrsh7th/cmp-path',
 		'saadparwaiz1/cmp_luasnip',
-		'VonHeikemen/lsp-zero.nvim',
+		{ 'zbirenbaum/copilot-cmp', config = false }, -- We'll configure it in lsp/copilot-cmp.lua
 	},
 	config = function()
 		local cmp = require('cmp')
-		local cmp_format = require('lsp-zero').cmp_format()
 		local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 		local luasnip = require('luasnip')
+		
+		-- Set up copilot-cmp
+		require('copilot_cmp').setup()
+		
+		-- Custom formatting function
+		local format_kinds = {
+			Text = '󰉿 Text',
+			Method = '󰆧 Method',
+			Function = '󰊕 Function',
+			Constructor = ' Constructor',
+			Field = '󰜢 Field',
+			Variable = '󰀫 Variable',
+			Class = '󰠱 Class',
+			Interface = ' Interface',
+			Module = ' Module',
+			Property = '󰜢 Property',
+			Unit = '󰑭 Unit',
+			Value = '󰎠 Value',
+			Enum = ' Enum',
+			Keyword = '󰌋 Keyword',
+			Snippet = ' Snippet',
+			Color = '󰏘 Color',
+			File = '󰈙 File',
+			Reference = '󰈇 Reference',
+			Folder = '󰉋 Folder',
+			EnumMember = ' EnumMember',
+			Constant = '󰏿 Constant',
+			Struct = '󰙅 Struct',
+			Event = ' Event',
+			Operator = '󰆕 Operator',
+			TypeParameter = '󰊄 TypeParam',
+			Copilot = ' Copilot',
+		}
+		
 		cmp.setup({
 			sources = {
-				{ name = 'supermaven' },
-				{ name = 'nvim_lsp' },
-				{ name = 'path' },
-				{ name = 'luasnip', keyword_length = 2 },
-				{ name = 'buffer', keyword_length = 3 },
+				{ name = 'copilot', group_index = 1 },
+				{ name = 'nvim_lsp', group_index = 2 },
+				{ name = 'path', group_index = 2 },
+				{ name = 'luasnip', keyword_length = 2, group_index = 2 },
+				{ name = 'buffer', keyword_length = 3, group_index = 3 },
 			},
 			window = {
 				completion = cmp.config.window.bordered(),
@@ -44,8 +77,47 @@ return {
 						fallback()
 					end
 				end,
+				['<S-Tab>'] = function(fallback)
+					if cmp.visible() then
+						cmp.select_prev_item()
+					else
+						fallback()
+					end
+				end,
 			}),
-			formatting = cmp_format,
+			formatting = {
+				format = function(entry, vim_item)
+					-- Set the kind icon
+					vim_item.kind = format_kinds[vim_item.kind] or vim_item.kind
+					
+					-- Set the source name
+					vim_item.menu = ({
+						copilot = '[Copilot]',
+						nvim_lsp = '[LSP]',
+						luasnip = '[Snippet]',
+						buffer = '[Buffer]',
+						path = '[Path]',
+					})[entry.source.name]
+					
+					return vim_item
+				end,
+			},
+			sorting = {
+				priority_weight = 2,
+				comparators = {
+					-- Below is the default comparator list and order for nvim-cmp
+					cmp.config.compare.offset,
+					-- cmp.config.compare.scopes, -- this is commented in nvim-cmp too
+					cmp.config.compare.exact,
+					cmp.config.compare.score,
+					cmp.config.compare.recently_used,
+					cmp.config.compare.locality,
+					cmp.config.compare.kind,
+					cmp.config.compare.sort_text,
+					cmp.config.compare.length,
+					cmp.config.compare.order,
+				},
+			},
 		})
 
 		cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())

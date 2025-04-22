@@ -86,21 +86,31 @@ return {
 		end
 
 		wk.add({
-			{ '<leader>f', group = 'Find' }, -- Define the 'Find' group with the prefix '<leader>f'
-
-			-- Individual key mappings under the '<leader>f' prefix
+			-- File finding
 			{ '<leader>ff', builtin.find_files, desc = 'Find Files' },
-			{ '<leader>fg', builtin.live_grep, desc = 'Find Grep' },
+			{ '<leader>fg', builtin.live_grep, desc = 'Find Text (Grep)' },
 			{ '<leader>fb', builtin.buffers, desc = 'Find Buffers' },
-			{ '<leader>fh', builtin.help_tags, desc = 'Find Help Tags' },
-			{ '<leader>fr', builtin.registers, desc = 'Find Registers' },
-			{ '<leader>fc', builtin.command_history, desc = 'Find Command History' },
-			{ '<leader>fm', ':Telescope grapple tags<cr>', desc = 'Find Marks' },
-			{ '<leader>fn', ':Telescope neoclip<CR>', desc = 'Find Neoclip' },
-			{ '<leader>fB', builtin.git_branches, desc = 'Find Branches' },
-			{ '<leader>fC', builtin.git_commits, desc = 'Find Commits' },
-			{ '<leader>fH', ':Telescope git_file_history<cr>', desc = 'Find History' },
 			{ '<leader>fw', list_opened_windows, desc = 'Find Opened Windows' },
+			{ '<leader>fr', builtin.oldfiles, desc = 'Find Recent Files' },
+			
+			-- Help and documentation
+			{ '<leader>fh', builtin.help_tags, desc = 'Find Help' },
+			{ '<leader>fk', builtin.keymaps, desc = 'Find Keymaps' },
+			{ '<leader>fc', builtin.commands, desc = 'Find Commands' },
+			
+			-- LSP related searches
+			{ '<leader>ls', builtin.lsp_document_symbols, desc = 'Find Document Symbols' },
+			{ '<leader>lS', builtin.lsp_workspace_symbols, desc = 'Find Workspace Symbols' },
+			{ '<leader>lr', builtin.lsp_references, desc = 'Find References' },
+			{ '<leader>ld', builtin.lsp_definitions, desc = 'Find Definitions' },
+			{ '<leader>li', builtin.lsp_implementations, desc = 'Find Implementations' },
+			{ '<leader>lt', builtin.lsp_type_definitions, desc = 'Find Type Definitions' },
+			
+			-- Git related searches
+			{ '<leader>gc', builtin.git_commits, desc = 'Find Git Commits' },
+			{ '<leader>gb', builtin.git_branches, desc = 'Find Git Branches' },
+			{ '<leader>gs', builtin.git_status, desc = 'Git Status' },
+			{ '<leader>gh', ':Telescope git_file_history<cr>', desc = 'Git File History' },
 		}, {
 			mode = 'n', -- Apply these mappings in NORMAL mode
 		})

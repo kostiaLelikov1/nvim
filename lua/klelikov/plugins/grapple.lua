@@ -17,6 +17,20 @@ return {
 			{ '<a-d>', '<cmd>Grapple select index=3<cr>', desc = 'Grapple goto 3' },
 			{ '<a-f>', '<cmd>Grapple select index=4<cr>', desc = 'Grapple goto 4' },
 		},
+		config = function()
+			require('grapple').setup({
+				scope = 'static',
+				save_path = vim.fn.stdpath('data') .. '/grapple',
+				icon = '󰛢',
+				scope_configs = {
+					static = {
+						scope_name = 'static',
+						resolver = 'git',
+						fallback = 'cwd',
+					},
+				},
+			})
+		end,
 	},
 	{
 		'will-lynas/grapple-line.nvim',
