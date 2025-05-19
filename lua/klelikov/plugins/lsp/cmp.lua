@@ -6,7 +6,7 @@ return {
 		'hrsh7th/cmp-buffer',
 		'hrsh7th/cmp-path',
 		'saadparwaiz1/cmp_luasnip',
-		{ 'zbirenbaum/copilot-cmp', config = false }, -- We'll configure it in lsp/copilot-cmp.lua
+		{ 'zbirenbaum/copilot-cmp', config = false },
 	},
 	config = function()
 		local cmp = require('cmp')
@@ -103,9 +103,7 @@ return {
 			sorting = {
 				priority_weight = 2,
 				comparators = {
-					-- Below is the default comparator list and order for nvim-cmp
 					cmp.config.compare.offset,
-					-- cmp.config.compare.scopes, -- this is commented in nvim-cmp too
 					cmp.config.compare.exact,
 					cmp.config.compare.score,
 					cmp.config.compare.recently_used,

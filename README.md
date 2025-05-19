@@ -8,7 +8,6 @@ A modern, optimized Neovim configuration with LSP support, Copilot integration, 
 - **Copilot Integration**: GitHub Copilot for AI-assisted coding with Copilot Chat
 - **Performance Optimizations**: Optimized for speed and responsiveness
 - **Modern UI**: Clean and functional interface with statusline and icons
-- **Git Integration**: Seamless Git workflow with Fugitive and Gitsigns
 - **File Navigation**: Fast file browsing with Telescope and nvim-tree
 - **Keybindings**: Intuitive keybindings with which-key integration
 
@@ -19,7 +18,6 @@ A modern, optimized Neovim configuration with LSP support, Copilot integration, 
   - `keymaps.lua`: Global keymaps
   - `options.lua`: Vim options
   - `performance.lua`: Performance optimizations
-  - `utils.lua`: Utility functions
 - `lua/klelikov/plugins/`: Plugin configurations
   - `lsp/`: LSP-related plugins
   - Various plugin configuration files

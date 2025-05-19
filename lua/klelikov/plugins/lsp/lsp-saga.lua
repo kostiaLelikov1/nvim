@@ -14,7 +14,6 @@ return {
 		wk.add({
 			{ 'gs', group = 'Lspsaga' }, -- Group for Lspsaga commands
 
-			-- Individual key mappings under the 'gs' prefix
 			{ 'gsca', '<cmd>Lspsaga code_action<CR>', desc = 'Code Action' },
 			{ 'gsd', '<cmd>Lspsaga peek_definition<CR>', desc = 'Peek Definition' },
 			{ 'gso', '<cmd>Lspsaga peek_type_definition<CR>', desc = 'Peek Type Definition' },
@@ -23,9 +22,6 @@ return {
 			{ 'gsl', '<cmd>Lspsaga outline<CR>', desc = 'LSP Outline' },
 			{ 'gsrr', '<cmd>Lspsaga rename<CR>', desc = 'Rename' },
 			{ 'gsK', '<cmd>Lspsaga hover_doc<CR>', desc = 'Hover Doc' },
-
-			-- Optional: You can add specific modes if needed
-			-- { "gs...", mode = "n" },  -- Only in NORMAL mode
 		})
 	end,
 	dependencies = {

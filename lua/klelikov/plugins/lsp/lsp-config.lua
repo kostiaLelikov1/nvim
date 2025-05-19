@@ -12,7 +12,6 @@ return {
 		local lspconfig = require('lspconfig')
 		local wk = require('which-key')
 
-		-- Set up diagnostic configuration including signs
 		local signs = {
 			Error = '✘',
 			Warn = '▲',
@@ -20,7 +19,6 @@ return {
 			Info = '»',
 		}
 
-		-- Configure diagnostics using the new API
 		vim.diagnostic.config({
 			signs = {
 				text = {
@@ -52,7 +50,6 @@ return {
 			},
 		})
 
-		-- Set up omnifunc
 		vim.api.nvim_create_autocmd('LspAttach', {
 			callback = function(args)
 				local bufnr = args.buf
@@ -60,12 +57,10 @@ return {
 			end,
 		})
 
-		-- LSP attach function for keymaps
 		local lsp_attach = function(_, bufnr)
 			wk.add({
 				{ 'g', group = '+LSP', buffer = bufnr }, -- Define the LSP group with 'g' prefix for the buffer
 
-				-- Individual key mappings with buffer-specific options
 				{ 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', desc = 'Show Hover', buffer = bufnr },
 				{ 'gd', '<cmd>Telescope lsp_definitions<cr>', desc = 'Go to Definition', buffer = bufnr },
 				{ 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', desc = 'Go to Declaration', buffer = bufnr },
@@ -84,17 +79,14 @@ return {
 			})
 		end
 
-		-- Default capabilities
 		local capabilities = require('cmp_nvim_lsp').default_capabilities()
 		capabilities.textDocument.foldingRange = {
 			dynamicRegistration = false,
 			lineFoldingOnly = true,
 		}
 
-		-- Set up mason
 		mason.setup({})
 
-		-- Set up mason-lspconfig
 		mason_lspconfig.setup({
 			ensure_installed = {
 				'ts_ls',
@@ -112,7 +104,6 @@ return {
 			automatic_installation = true,
 		})
 
-		-- Configure LSP servers
 		mason_lspconfig.setup_handlers({
 			function(server_name)
 				lspconfig[server_name].setup({
@@ -143,7 +134,6 @@ return {
 				})
 			end,
 
-			-- Special configuration for cssmodules_ls
 			['cssmodules_ls'] = function()
 				lspconfig.cssmodules_ls.setup({
 					on_attach = function(client, bufnr)
@@ -155,25 +145,11 @@ return {
 			end,
 		})
 
-		-- Configure gleam LSP server
 		lspconfig.gleam.setup({
 			on_attach = lsp_attach,
 			capabilities = capabilities,
 		})
 
-		-- Configure diagnostic display
-		vim.diagnostic.config({
-			underline = true,
-			virtual_text = {
-				spacing = 5,
-				severity = {
-					min = vim.diagnostic.severity.HINT,
-				},
-			},
-			update_in_insert = true,
-		})
-
-		-- Set up py_lsp
 		require('py_lsp').setup({})
 	end,
 }

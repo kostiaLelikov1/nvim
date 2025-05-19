@@ -15,7 +15,7 @@ opt.laststatus = 3 -- Global statusline
 opt.cmdheight = 1 -- Command line height
 opt.pumheight = 10 -- Pop-up menu height
 opt.conceallevel = 0 -- Show text normally
-opt.statuscolumn = '%s %-3l %-3r  ' -- Status column format
+opt.statuscolumn = '%s%=%{v:relnum?v:relnum:v:lnum} %{v:lnum} ' -- Status column format
 
 -- Editor behavior
 opt.tabstop = 2 -- Number of spaces a tab counts for
