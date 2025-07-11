@@ -1,16 +1,26 @@
 return {
-	{
-		'tpope/vim-fugitive',
-	},
+	-- Fugitive
+	{ 'tpope/vim-fugitive', cmd = { 'Git', 'Gvdiffsplit', 'Gdiffsplit' } },
+
+	-- Gitsigns
 	{
 		'lewis6991/gitsigns.nvim',
+		event = { 'BufReadPre', 'BufNewFile' },
 		config = function()
 			local wk = require('which-key')
-			require('gitsigns').setup()
+			require('gitsigns').setup({
+				signs = {
+					add = { text = '▎' },
+					change = { text = '▎' },
+					delete = { text = '' },
+					topdelete = { text = '' },
+					changedelete = { text = '▎' },
+					untracked = { text = '▎' },
+				},
+			})
 
-			-- Use the standard <leader>g prefix for git operations to align with our keymap organization
 			wk.add({
-				-- Git operations with gitsigns
+				{ '<leader>g', group = '+git' },
 				{ '<leader>gs', "<cmd>lua require'gitsigns'.stage_hunk()<CR>", desc = 'Stage Hunk' },
 				{ '<leader>gu', "<cmd>lua require'gitsigns'.undo_stage_hunk()<CR>", desc = 'Undo Stage Hunk' },
 				{ '<leader>gr', "<cmd>lua require'gitsigns'.reset_hunk()<CR>", desc = 'Reset Hunk' },
@@ -18,20 +28,21 @@ return {
 				{ '<leader>gp', "<cmd>lua require'gitsigns'.preview_hunk()<CR>", desc = 'Preview Hunk' },
 				{ '<leader>gb', "<cmd>lua require'gitsigns'.blame_line()<CR>", desc = 'Blame Line' },
 				{ '<leader>gd', "<cmd>lua require'gitsigns'.diffthis()<CR>", desc = 'Diff This' },
-
-				-- Navigation
 				{ ']g', "<cmd>lua require'gitsigns'.next_hunk()<CR>", desc = 'Next Git Hunk' },
 				{ '[g', "<cmd>lua require'gitsigns'.prev_hunk()<CR>", desc = 'Previous Git Hunk' },
-			}, {
-				mode = 'n', -- Apply these mappings in NORMAL mode
-			})
+			}, { mode = 'n' })
 		end,
 	},
+
+	-- Git File History
 	{
 		'isak102/telescope-git-file-history.nvim',
-		dependancies = {
-			'nvim-lua/plenary.nvim',
-			'nvim-telescope/telescope.nvim',
+		dependencies = { 'nvim-lua/plenary.nvim', 'nvim-telescope/telescope.nvim' },
+		config = function()
+			require('telescope').load_extension('git_file_history')
+		end,
+		keys = {
+			{ '<leader>gf', '<cmd>Telescope git_file_history<cr>', desc = 'Git file history' },
 		},
 	},
 }

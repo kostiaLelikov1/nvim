@@ -54,7 +54,7 @@ A modern, optimized Neovim configuration with LSP support, Copilot integration, 
 - `<leader>cc`: Toggle Copilot Chat
 - `<leader>ce`: Explain code
 - `<leader>cr`: Review code
-- `<leader>ct`: Generate tests
+- `<leader>ct`: Generate Tests
 
 ## Installation
 

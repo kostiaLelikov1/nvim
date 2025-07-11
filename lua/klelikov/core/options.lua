@@ -1,88 +1,83 @@
 local opt = vim.opt
+local g = vim.g
 
--- UI options
-opt.relativenumber = true -- Show relative line numbers
-opt.number = true -- Show current line number
-opt.cursorline = true -- Highlight current line
-opt.termguicolors = true -- True color support
-opt.background = 'dark' -- Dark background
-opt.signcolumn = 'yes' -- Always show sign column
-opt.scrolloff = 8 -- Keep 8 lines above/below cursor when scrolling
-opt.sidescrolloff = 8 -- Keep 8 columns left/right of cursor when scrolling horizontally
-opt.showmode = false -- Don't show mode (shown in statusline)
-opt.showtabline = 2 -- Always show tabline
-opt.laststatus = 3 -- Global statusline
-opt.cmdheight = 1 -- Command line height
-opt.pumheight = 10 -- Pop-up menu height
-opt.conceallevel = 0 -- Show text normally
-opt.statuscolumn = '%s%=%{v:relnum?v:relnum:v:lnum} %{v:lnum} ' -- Status column format
+-- UI
+opt.number = true
+opt.relativenumber = true
+opt.cursorline = true
+opt.signcolumn = 'yes'
+opt.scrolloff = 8
+opt.sidescrolloff = 8
+opt.termguicolors = true
+opt.background = 'dark'
+opt.showmode = false
+opt.laststatus = 3
+opt.cmdheight = 1
+opt.pumheight = 10
+opt.conceallevel = 0
 
--- Editor behavior
-opt.tabstop = 2 -- Number of spaces a tab counts for
-opt.shiftwidth = 2 -- Number of spaces for indentation
-opt.expandtab = true -- Use spaces instead of tabs
-opt.autoindent = true -- Copy indent from current line when starting new line
-opt.smartindent = true -- Smart auto-indenting
-opt.wrap = false -- Don't wrap lines
-opt.breakindent = true -- Preserve indentation in wrapped text
-opt.backspace = 'indent,eol,start' -- Backspace behavior
+-- Editor
+opt.tabstop = 2
+opt.shiftwidth = 2
+opt.expandtab = true
+opt.autoindent = true
+opt.smartindent = true
+opt.wrap = false
+opt.breakindent = true
+opt.backspace = 'indent,eol,start'
 
--- Search options
-opt.ignorecase = true -- Ignore case in search patterns
-opt.smartcase = true -- Override ignorecase if search contains uppercase
-opt.hlsearch = true -- Highlight search results
-opt.incsearch = true -- Incremental search
+-- Search
+opt.ignorecase = true
+opt.smartcase = true
+opt.hlsearch = true
+opt.incsearch = true
 
--- Split behavior
-opt.splitright = true -- Vertical splits go to the right
-opt.splitbelow = true -- Horizontal splits go below
+-- Splits
+opt.splitright = true
+opt.splitbelow = true
 
--- File handling
-opt.encoding = 'utf-8' -- String encoding
-opt.fileencoding = 'utf-8' -- File encoding
-opt.swapfile = false -- Don't create swap files
-opt.backup = false -- Don't create backup files
-opt.writebackup = false -- Don't write backup files
-opt.undofile = true -- Persistent undo history
-opt.undodir = vim.fn.stdpath('data') .. '/undodir' -- Undo directory
+-- Files
+opt.encoding = 'utf-8'
+opt.fileencoding = 'utf-8'
+opt.swapfile = false
+opt.backup = false
+opt.writebackup = false
+opt.undofile = true
+opt.undodir = vim.fn.stdpath('data') .. '/undodir'
 
--- System interaction
-opt.clipboard:append('unnamedplus') -- Use system clipboard
-opt.hidden = true -- Allow buffer switching without saving
-opt.autowriteall = true -- Auto-save files when switching buffers
-opt.confirm = true -- Confirm before closing unsaved buffers
-
--- Handle background jobs when quitting
-opt.autoread = true -- Auto-reload files changed outside of Neovim
-opt.exrc = true -- Allow local .nvimrc files
-opt.secure = true -- Restrict usage in local .nvimrc files
-
--- Add autocmd to handle jobs when quitting
--- vim.api.nvim_create_autocmd('VimLeavePre', {
--- 	callback = function()
--- 		-- Terminate all jobs before exiting
--- 		local jobs = vim.fn.jobwait({}, 0)
--- 		for _, job_id in ipairs(vim.fn.getjobs()) do
--- 			if job_id > 0 then
--- 				vim.fn.jobstop(job_id)
--- 			end
--- 		end
--- 	end,
--- })
-opt.mouse = 'a' -- Enable mouse in all modes
-opt.updatetime = 100 -- Faster completion and other features
-opt.timeoutlen = 300 -- Time to wait for a mapped sequence to complete
+-- System
+opt.clipboard:append('unnamedplus')
+opt.hidden = true
+opt.autowriteall = true
+opt.confirm = true
+opt.autoread = true
+opt.exrc = true
+opt.secure = true
+opt.mouse = 'a'
+opt.updatetime = 100
+opt.timeoutlen = 300
 
 -- Spelling
-opt.spelllang = 'en_us' -- Spell check language
-opt.spell = true -- Enable spell checking
+opt.spelllang = 'en_us'
+opt.spell = true
 
--- Set language
+-- Performance
+g.loaded_gzip = 1
+g.loaded_zip = 1
+g.loaded_zipPlugin = 1
+g.loaded_tar = 1
+g.loaded_tarPlugin = 1
+g.loaded_getscript = 1
+g.loaded_getscriptPlugin = 1
+g.loaded_vimball = 1
+g.loaded_vimballPlugin = 1
+g.loaded_2html_plugin = 1
+g.loaded_logiPat = 1
+g.loaded_rrhelper = 1
+g.loaded_netrw = 1
+g.loaded_netrwPlugin = 1
+g.loaded_netrwSettings = 1
+g.loaded_netrwFileHandlers = 1
+
+-- Language
 vim.cmd('language en_US.UTF-8')
-
--- Disable some built-in plugins we don't need
-vim.g.loaded_gzip = 1
-vim.g.loaded_zip = 1
-vim.g.loaded_zipPlugin = 1
-vim.g.loaded_tar = 1
-vim.g.loaded_tarPlugin = 1
