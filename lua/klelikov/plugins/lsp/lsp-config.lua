@@ -91,7 +91,6 @@ return {
 			ensure_installed = {
 				'ts_ls',
 				'lua_ls',
-				'eslint',
 				'prismals',
 				'cssls',
 				'cssmodules_ls',
