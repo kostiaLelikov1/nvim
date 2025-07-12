@@ -48,7 +48,7 @@ opt.undodir = vim.fn.stdpath('data') .. '/undodir'
 -- System
 opt.clipboard:append('unnamedplus')
 opt.hidden = true
-opt.autowriteall = true
+opt.autowriteall = false
 opt.confirm = true
 opt.autoread = true
 opt.exrc = true

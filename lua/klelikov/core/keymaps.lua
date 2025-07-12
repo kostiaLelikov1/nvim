@@ -173,6 +173,17 @@ wk.register({
 	-- Text manipulation
 	{ '<leader>xd', 'ggVG"_d', desc = 'Delete all text' },
 	{ '<leader>xy', 'ggVGy', desc = 'Yank all text' },
+
+	-- Toggle line numbers
+	{ '<leader>ln', function()
+		if vim.o.relativenumber then
+			vim.o.relativenumber = false
+			vim.o.number = true
+		else
+			vim.o.relativenumber = true
+			vim.o.number = true
+		end
+	end, desc = 'Toggle absolute/relative line numbers' },
 }, { mode = 'n' })
 
 -- Window resize keymaps

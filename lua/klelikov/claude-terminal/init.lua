@@ -95,10 +95,11 @@ function M.open_claude_terminal()
 	-- Set up keymaps
 	local opts = { buffer = claude_term_buf, noremap = true, silent = true }
 	vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', opts)
-	vim.keymap.set('t', '<leader>at', function()
+	-- Leader keymaps only work in normal mode to avoid delays when typing space in terminal
+	vim.keymap.set('n', '<leader>at', function()
 		M.toggle_claude_terminal()
 	end, opts)
-	vim.keymap.set('t', '<leader>ac', function()
+	vim.keymap.set('n', '<leader>ac', function()
 		M.close_claude_terminal()
 	end, opts)
 
