@@ -17,10 +17,56 @@ return {
 	-- Lualine
 	{
 		'nvim-lualine/lualine.nvim',
-		dependencies = { 'nvim-tree/nvim-web-devicons', 'folke/noice.nvim' },
+		dependencies = { 'nvim-tree/nvim-web-devicons', 'folke/noice.nvim', 'cbochs/grapple.nvim' },
 		config = function()
 			local lualine = require('lualine')
 			local lazy_status = require('lazy.status')
+
+			local function grapple_marks()
+				local ok, grapple = pcall(require, 'grapple')
+				if not ok then
+					return ''
+				end
+
+				local tags = grapple.tags()
+				if not tags or vim.tbl_isempty(tags) then
+					return ''
+				end
+
+				local current_file = vim.fn.expand('%:p')
+				local marks = {}
+
+				for i, tag in ipairs(tags) do
+					local buf_name = vim.fn.fnamemodify(tag.path, ':t')
+					if buf_name == '' then
+						buf_name = 'unnamed'
+					end
+
+					if tag.path == current_file then
+						table.insert(marks, string.format('[%s]', buf_name))
+					else
+						table.insert(marks, buf_name)
+					end
+				end
+
+				if #marks > 0 then
+					return '󰓾 ' .. table.concat(marks, ' ')
+				end
+				return ''
+			end
+
+			local function unsaved_files()
+				local count = 0
+				for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+					if vim.api.nvim_buf_is_loaded(buf) and vim.api.nvim_buf_get_option(buf, 'modified') then
+						count = count + 1
+					end
+				end
+				if count > 0 then
+					return '󰈸 ' .. count
+				end
+				return ''
+			end
 
 			lualine.setup({
 				options = {
@@ -30,12 +76,24 @@ return {
 				},
 				sections = {
 					lualine_a = { 'mode' },
-					lualine_b = { 'branch', 'diff', 'diagnostics' },
+					lualine_b = {
+						'branch',
+						'diff',
+						'diagnostics',
+						{
+							unsaved_files,
+							color = { fg = '#f38ba8' },
+						},
+					},
 					lualine_c = {
 						'%=',
 						{
 							'filename',
 							path = 0,
+						},
+						{
+							grapple_marks,
+							color = { fg = '#a6e3a1' },
 						},
 					},
 					lualine_x = {
